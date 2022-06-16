@@ -1,14 +1,15 @@
 import { ReactElement, useCallback } from 'react'
-import { Button } from '../components/Button'
+import { useRouter } from 'next/router'
 
 import { Layout } from '../components/Layout'
 import { Logo } from '../components/Logo'
+import { FrameCar } from '../components/FrameCar'
+import { Button } from '../components/Button'
 
 import BgHome from '../../public/imagens/bg-home.png'
 import FrameHome from '../../public/imagens/frame-home.png'
 
 import * as S from '../styles/pages/Presentation'
-import { useRouter } from 'next/router'
 
 export default function Presentation() {
   const router = useRouter()
@@ -33,10 +34,7 @@ export default function Presentation() {
           <Button onClick={handleClickRedirectHome}>Começar agora</Button>
         </S.TextContainer>
 
-        <S.ImageContainer>
-          <img src={FrameHome} alt="Frame Home" className="frame" />
-          <img src={BgHome} alt="Background Home" className="car" />
-        </S.ImageContainer>
+        <FrameCar frameBg={FrameHome} carBg={BgHome} />
       </section>
     </S.Container>
   )
