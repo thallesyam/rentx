@@ -17,28 +17,47 @@ export default createGlobalStyle`
 		  font-size: 87.5%;
     } 
   }
+
   body {
-    background: var(--background);
+    background: var(--black-800);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     height: 100vh
   }
+
   ol, ul {
     list-style: none;
   }
+
   h1, h2, h3, h4, h5, h6, p {
-    font-weight: 400;
+    font-weight: 300;
   }
+
   button {
     cursor: pointer;
   }
+  
   a {
     text-decoration: none;
-    color: #000;
+    color: var(--black);
   }
-  .ReactGridGallery_tile-viewport, .ReactGridGallery_tile {
-    border-radius: 1rem;
-  }
+  
   :root {
+    --red-900: ${(props) => props.theme.colors['red-900']};
+    --red-500: ${(props) => props.theme.colors['red-500']};
+    --red-100: ${(props) => props.theme.colors['red-100']};
+    --green-900: ${(props) => props.theme.colors['green-900']};
+    --green-100: ${(props) => props.theme.colors['green-100']};
+    --black-900: ${(props) => props.theme.colors['black-900']};
+    --black-800: ${(props) => props.theme.colors['black-800']};
+    --black-700: ${(props) => props.theme.colors['black-700']};
+    --white-900: ${(props) => props.theme.colors['white-900']};
+    --gray-900: ${(props) => props.theme.colors['gray-900']};
+    --gray-800: ${(props) => props.theme.colors['gray-800']};
+    --gray-700: ${(props) => props.theme.colors['gray-700']};
+    --gray-300: ${(props) => props.theme.colors['gray-300']};
+    --gray-200: ${(props) => props.theme.colors['gray-200']};
+    --gray-100: ${(props) => props.theme.colors['gray-100']};
+
   }
 `
