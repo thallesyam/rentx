@@ -19,7 +19,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background: var(--black-800);
+    background: var(--gray-100);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     height: 100vh
@@ -34,6 +34,7 @@ export default createGlobalStyle`
   }
 
   button {
+    border: 0;
     cursor: pointer;
   }
   
@@ -58,6 +59,5 @@ export default createGlobalStyle`
     --gray-300: ${(props) => props.theme.colors['gray-300']};
     --gray-200: ${(props) => props.theme.colors['gray-200']};
     --gray-100: ${(props) => props.theme.colors['gray-100']};
-
   }
 `
