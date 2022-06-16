@@ -3,15 +3,15 @@ import { ReactNode } from 'react'
 
 type Props = {
   children: ReactNode
-  title: string
+  title?: string
   description?: string
 }
 
-export function Layout({ children, title, description }: Props) {
+export function Layout({ children, title = '', description = '' }: Props) {
   return (
     <>
       <Head>
-        <title>{`RentX | ${title}`}</title>
+        <title>{`RentX ${title && `| ${title}`}`}</title>
 
         {description && <meta name="description" content={description} />}
 

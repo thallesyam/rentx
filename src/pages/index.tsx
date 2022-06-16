@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ReactElement, useCallback } from 'react'
 import { Button } from '../components/Button'
 
 import { Layout } from '../components/Layout'
@@ -7,9 +7,16 @@ import { Logo } from '../components/Logo'
 import BgHome from '../../public/imagens/bg-home.png'
 import FrameHome from '../../public/imagens/frame-home.png'
 
-import * as S from '../styles/pages/Home'
+import * as S from '../styles/pages/Presentation'
+import { useRouter } from 'next/router'
 
-export default function Home() {
+export default function Presentation() {
+  const router = useRouter()
+
+  const handleClickRedirectHome = useCallback(() => {
+    router.push('/home')
+  }, [])
+
   return (
     <S.Container>
       <section>
@@ -23,7 +30,7 @@ export default function Home() {
             Vários modelos para você dirigir seguro, com conforto e segurança.
           </p>
 
-          <Button>Começar agora</Button>
+          <Button onClick={handleClickRedirectHome}>Começar agora</Button>
         </S.TextContainer>
 
         <S.ImageContainer>
@@ -35,6 +42,6 @@ export default function Home() {
   )
 }
 
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <Layout title="Home">{page}</Layout>
+Presentation.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
 }
