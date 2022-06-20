@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { ReactNode } from 'react'
+import { Header } from '../header'
 import { Sidebar } from '../sidebar'
 
 import * as S from './style'
@@ -9,6 +10,7 @@ type Props = {
   title?: string
   description?: string
   isSidebar?: boolean
+  headerText?: string
 }
 
 export function Layout({
@@ -16,6 +18,7 @@ export function Layout({
   title = '',
   description = '',
   isSidebar = true,
+  headerText = '',
 }: Props) {
   return (
     <>
@@ -33,7 +36,7 @@ export function Layout({
         {isSidebar && <Sidebar />}
 
         <section>
-          <header>header</header>
+          {headerText !== '' && <Header title={headerText} />}
 
           {children}
         </section>

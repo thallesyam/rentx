@@ -8,5 +8,9 @@ export default function Login() {
 }
 
 Login.getLayout = function getLayout(page: ReactElement) {
-  return <Layout title="Login">{page}</Layout>
+  return (
+    <Layout title="Login" headerText="Profile">
+      {page}
+    </Layout>
+  )
 }
