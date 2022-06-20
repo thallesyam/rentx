@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const Container = styled.header`
   width: 100%;
-  padding: 1.75rem 1rem;
+  height: 80px;
+  padding: 1rem;
 
   background-color: var(--white-900);
 
@@ -15,6 +16,12 @@ export const Container = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    > h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
 
     > svg {
       cursor: pointer;

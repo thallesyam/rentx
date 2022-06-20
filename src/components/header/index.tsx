@@ -14,7 +14,7 @@ export function Header({ title = '' }: Props) {
   return (
     <S.Container>
       <section>
-        <h1>{title}</h1>
+        <h3>{title}</h3>
 
         {isLogged ? <LogoutSvg /> : <SignInCard />}
       </section>
