@@ -9,7 +9,7 @@ export default function Login() {
 
 Login.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Layout title="Login" headerText="Profile">
+    <Layout title="Login" headerText="Perfil">
       {page}
     </Layout>
   )
