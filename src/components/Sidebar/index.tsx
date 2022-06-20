@@ -33,7 +33,7 @@ export function Sidebar() {
           <Link href={icon.link} key={icon.id}>
             <a
               title={icon.name}
-              className={icon.link === router.asPath && 'isActive'}
+              className={icon.link === router.asPath ? 'isActive' : undefined}
             >
               <icon.Icon />
             </a>
