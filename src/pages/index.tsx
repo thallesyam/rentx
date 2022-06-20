@@ -22,7 +22,7 @@ export default function Presentation() {
     <S.Container>
       <section>
         <S.TextContainer>
-          <Logo />
+          <Logo isText />
 
           <h1>
             Alugue um <br /> carro de maneira <br /> simples e fácil

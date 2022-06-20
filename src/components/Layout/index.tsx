@@ -2,6 +2,8 @@ import Head from 'next/head'
 import { ReactNode } from 'react'
 import { Sidebar } from '../sidebar'
 
+import * as S from './style'
+
 type Props = {
   children: ReactNode
   title?: string
@@ -27,11 +29,15 @@ export function Layout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      {isSidebar && <Sidebar />}
+      <S.Container>
+        {isSidebar && <Sidebar />}
 
-      <header></header>
+        <section>
+          <header>header</header>
 
-      {children}
+          {children}
+        </section>
+      </S.Container>
     </>
   )
 }
