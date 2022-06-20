@@ -41,5 +41,5 @@ export default function Presentation() {
 }
 
 Presentation.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>
+  return <Layout isSidebar={false}>{page}</Layout>
 }

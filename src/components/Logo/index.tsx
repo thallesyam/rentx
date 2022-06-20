@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import LogoSvg from '../../../public/icons/logo.svg'
+import LogoSvg from '../../../public/icons/logo-text.svg'
 
 export function Logo() {
   return (

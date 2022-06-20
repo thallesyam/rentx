@@ -1,13 +1,20 @@
 import Head from 'next/head'
 import { ReactNode } from 'react'
+import { Sidebar } from '../Sidebar'
 
 type Props = {
   children: ReactNode
   title?: string
   description?: string
+  isSidebar?: boolean
 }
 
-export function Layout({ children, title = '', description = '' }: Props) {
+export function Layout({
+  children,
+  title = '',
+  description = '',
+  isSidebar = true,
+}: Props) {
   return (
     <>
       <Head>
@@ -19,6 +26,10 @@ export function Layout({ children, title = '', description = '' }: Props) {
         <meta name="author" content="Thalles Ian" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
+
+      {isSidebar && <Sidebar />}
+
+      <header></header>
 
       {children}
     </>
