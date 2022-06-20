@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { ReactNode } from 'react'
-import { Sidebar } from '../Sidebar'
+import { Sidebar } from '../sidebar'
 
 type Props = {
   children: ReactNode

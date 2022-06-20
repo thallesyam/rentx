@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { Layout } from '../components/Layout'
+import { Layout } from '../components/layout'
 
 import * as S from '../styles/pages/Home'
 
