@@ -26,6 +26,7 @@
     "eslint-config-next": "^12.1.6",
     "eslint-config-prettier": "^8.5.0",
     "next-images": "^1.8.4",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "tsconfig-paths": "^4.0.0"
   }
 }

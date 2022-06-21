@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
-import LogoTextSvg from '/public/icons/logo-text.svg'
-import LogoImageSvg from '/public/icons/logo-image.svg'
+import LogoTextSvg from '../../../public/icons/logo-text.svg'
+import LogoImageSvg from '../../../public/icons/logo-image.svg'
 
 type Props = {
   isText?: boolean

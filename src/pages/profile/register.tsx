@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
 import { ReactElement } from 'react'
-import { Layout } from '@/components/layout'
+import { Layout } from '@components/layout'
 
-import * as S from '@/styles/pages/Register'
+import * as S from '@styles/pages/Register'
 
 export default function Register() {
   return <S.Container>Register</S.Container>

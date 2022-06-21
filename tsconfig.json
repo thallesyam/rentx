@@ -14,12 +14,11 @@
     "moduleResolution": "Node",
     "jsx": "preserve",
     "resolveJsonModule": true,
-    "rootDir": "src",
-    "baseUrl": "src",
+    "baseUrl": ".",
+    "rootDir": ".",
     "paths": {
-      "@/*": ["*"],
-      "/*": ["../public"],
-      "@/styles": ["../styles"]
+      "@components/*": ["./src/components/*"],
+      "@styles/*": ["./src/styles/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

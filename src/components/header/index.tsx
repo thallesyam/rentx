@@ -1,6 +1,6 @@
-import { SignInCard } from '@/components/signIn-card'
+import { SignInCard } from '@components/signIn-card'
 
-import LogoutSvg from '/public/icons/logout.svg'
+import LogoutSvg from '../../../public/icons/logout.svg'
 
 import * as S from './style'
 

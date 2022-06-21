@@ -2,11 +2,11 @@ import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import Link from 'next/link'
 
-import { Logo } from '@/components/logo'
+import { Logo } from '@components/logo'
 
-import HomeSvg from '/public/icons/home.svg'
-import FilterSvg from '/public/icons/filter.svg'
-import ProfileSvg from '/public/icons/profile.svg'
+import HomeSvg from '../../../public/icons/home.svg'
+import FilterSvg from '../../../public/icons/filter.svg'
+import ProfileSvg from '../../../public/icons/profile.svg'
 
 import * as S from './style'
 

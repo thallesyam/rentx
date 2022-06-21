@@ -1,15 +1,15 @@
 import { ReactElement, useCallback } from 'react'
 import { useRouter } from 'next/router'
 
-import { Layout } from '@/components/layout'
-import { Logo } from '@/components/logo'
-import { FrameCar } from '@/components/frame-car'
-import { Button } from '@/components/button'
+import { Layout } from '@components/layout'
+import { Logo } from '@components/logo'
+import { FrameCar } from '@components/frame-car'
+import { Button } from '@components/button'
 
-import BgHome from '/public/imagens/bg-home.png'
-import FrameHome from '/public/imagens/frame-home.png'
+import BgHome from '../../public/images/bg-home.png'
+import FrameHome from '../../public/images/frame-home.png'
 
-import * as S from '@/styles/pages/Presentation'
+import * as S from '@styles/pages/Presentation'
 
 export default function Presentation() {
   const router = useRouter()
