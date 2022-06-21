@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
-import { Layout } from '../components/layout'
+import { Layout } from '@/components/layout'
 
-import * as S from '../styles/pages/Home'
+import * as S from '@/styles/pages/Home'
 
 export default function Home() {
   return <S.Container>Home</S.Container>

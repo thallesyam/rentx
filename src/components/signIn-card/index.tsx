@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import ProfileSvg from '../../../public/icons/profile.svg'
+import ProfileSvg from '/public/icons/profile.svg'
 
 import * as S from './style'
 

@@ -1,13 +1,14 @@
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
-import { Logo } from '../logo'
+import Link from 'next/link'
 
-import HomeSvg from '../../../public/icons/home.svg'
-import FilterSvg from '../../../public/icons/filter.svg'
-import ProfileSvg from '../../../public/icons/profile.svg'
+import { Logo } from '@/components/logo'
+
+import HomeSvg from '/public/icons/home.svg'
+import FilterSvg from '/public/icons/filter.svg'
+import ProfileSvg from '/public/icons/profile.svg'
 
 import * as S from './style'
-import Link from 'next/link'
 
 const icons = [
   { id: 1, name: 'Home', link: '/home', Icon: HomeSvg },

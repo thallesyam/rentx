@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
 import { ReactElement } from 'react'
-import { Layout } from '../../components/layout'
+import { Layout } from '@/components/layout'
 
-import * as S from '../../styles/pages/Profile'
+import * as S from '@/styles/pages/Profile'
 
 export default function Profile() {
   return <S.Container>Profile</S.Container>

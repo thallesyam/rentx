@@ -3,8 +3,8 @@ import { AppProps } from 'next/app'
 import { ReactElement, ReactNode } from 'react'
 import { ThemeProvider } from 'styled-components'
 
-import GlobalStyle from '../styles/global'
-import theme from '../styles/theme'
+import GlobalStyle from '@/styles/global'
+import theme from '@/styles/theme'
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
