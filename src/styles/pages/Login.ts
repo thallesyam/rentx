@@ -12,9 +12,35 @@ export const Container = styled.main`
   > section {
     display: flex;
     align-items: center;
-    gap: 5.375rem;
+    gap: 8.5rem;
 
     width: 100%;
     max-width: 1120px;
+  }
+`
+export const FormLogin = styled.section`
+  width: 100%;
+
+  > section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  > h1 {
+    color: var(--gray-600);
+    font-size: 2.25rem;
+    font-weight: 600;
+    font-family: 'Archivo';
+    margin-bottom: 1.5rem;
+  }
+
+  > p {
+    max-width: 254px;
+    margin-bottom: 2.5rem;
+
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gray-800);
   }
 `

@@ -56,6 +56,7 @@ export default createGlobalStyle`
     --gray-900: ${(props) => props.theme.colors['gray-900']};
     --gray-800: ${(props) => props.theme.colors['gray-800']};
     --gray-700: ${(props) => props.theme.colors['gray-700']};
+    --gray-600: ${(props) => props.theme.colors['gray-600']};
     --gray-300: ${(props) => props.theme.colors['gray-300']};
     --gray-200: ${(props) => props.theme.colors['gray-200']};
     --gray-100: ${(props) => props.theme.colors['gray-100']};
