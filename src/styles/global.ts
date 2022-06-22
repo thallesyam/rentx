@@ -36,6 +36,11 @@ export default createGlobalStyle`
   button {
     border: 0;
     cursor: pointer;
+  
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
   }
   
   a {
@@ -57,6 +62,7 @@ export default createGlobalStyle`
     --gray-800: ${(props) => props.theme.colors['gray-800']};
     --gray-700: ${(props) => props.theme.colors['gray-700']};
     --gray-600: ${(props) => props.theme.colors['gray-600']};
+    --gray-500: ${(props) => props.theme.colors['gray-500']};
     --gray-300: ${(props) => props.theme.colors['gray-300']};
     --gray-200: ${(props) => props.theme.colors['gray-200']};
     --gray-100: ${(props) => props.theme.colors['gray-100']};
