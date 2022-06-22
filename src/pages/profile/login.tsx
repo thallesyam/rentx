@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next'
-import { ReactElement, useEffect, useState } from 'react'
+import { ReactElement, useCallback } from 'react'
 
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -18,6 +18,7 @@ import PasswordInputSvg from '../../../public/icons/password-input.svg'
 import * as S from '@styles/pages/Login'
 import { FormControl } from '@components/form-control'
 import { ButtonLink } from '@components/button-link'
+import { useRouter } from 'next/router'
 
 type ILoginForm = {
   email: string
@@ -30,6 +31,7 @@ const loginSchema = yup.object().shape({
 })
 
 export default function Login() {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -38,6 +40,10 @@ export default function Login() {
     resolver: yupResolver(loginSchema),
     mode: 'all',
   })
+
+  const handleClickRedirectRegister = useCallback(() => {
+    router.push('/profile/register')
+  }, [])
 
   const handleLogin: SubmitHandler<ILoginForm> = async (values) => {
     console.log(values)
@@ -51,7 +57,6 @@ export default function Login() {
         <S.FormLogin onSubmit={handleSubmit(handleLogin)}>
           <h1>Estamos quase lá.</h1>
           <p>Faça seu login para começar uma experiência incrível.</p>
-
           <FormControl>
             <Input
               isIcon
@@ -73,13 +78,17 @@ export default function Login() {
               {...register('password')}
             />
           </FormControl>
-
           <ButtonLink text="Esqueci minha senha" />
-
           <Button type="submit" className="login_button" disabled={!isValid}>
             Login
           </Button>
-          <Button className="register_button">Criar conta gratuita</Button>
+          <Button
+            type="button"
+            className="register_button"
+            onClick={handleClickRedirectRegister}
+          >
+            Criar conta gratuita
+          </Button>{' '}
         </S.FormLogin>
       </section>
     </S.Container>
