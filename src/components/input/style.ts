@@ -9,26 +9,6 @@ export const Container = styled.section`
   display: grid;
   grid-template-columns: 71px 1fr;
 
-  > label {
-    cursor: pointer;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--white-900);
-
-    position: relative;
-
-    &::after {
-      content: '';
-      background-color: var(--gray-100);
-      position: absolute;
-      right: 0;
-      width: 2px;
-      height: 90%;
-    }
-  }
-
   > div {
     position: relative;
 
@@ -55,5 +35,32 @@ export const Container = styled.section`
       background-color: transparent;
       right: 1.5rem;
     }
+  }
+`
+type ILabelIcon = {
+  error: boolean
+}
+
+export const LabelIcon = styled.label<ILabelIcon>`
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white-900);
+
+  position: relative;
+
+  > svg path {
+    fill: ${(props) => (props.error ? 'var(--red-900)' : 'var(--gray-800)')};
+  }
+
+  &::after {
+    content: '';
+    background-color: var(--gray-100);
+    position: absolute;
+    right: 0;
+    width: 2px;
+    height: 90%;
   }
 `

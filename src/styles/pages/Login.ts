@@ -59,5 +59,9 @@ export const FormLogin = styled.form`
     border: 1px solid var(--gray-300);
     color: var(--gray-900);
     margin-top: 1rem;
+
+    &:hover {
+      border: 2px solid var(--red-900);
+    }
   }
 `

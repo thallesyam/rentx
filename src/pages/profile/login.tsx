@@ -1,5 +1,9 @@
 import { GetServerSideProps } from 'next'
-import { ReactElement } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
+
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm, SubmitHandler } from 'react-hook-form'
 
 import { FrameCar } from '@components/frame-car'
 import { Layout } from '@components/layout'
@@ -15,13 +19,36 @@ import * as S from '@styles/pages/Login'
 import { FormControl } from '@components/form-control'
 import { ButtonLink } from '@components/button-link'
 
+type ILoginForm = {
+  email: string
+  password: string
+}
+
+const loginSchema = yup.object().shape({
+  email: yup.string().required('Email obrigatório'),
+  password: yup.string().required('Senha obrigatória'),
+})
+
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+    mode: 'all',
+  })
+
+  const handleLogin: SubmitHandler<ILoginForm> = async (values) => {
+    console.log(values)
+  }
+
   return (
     <S.Container>
       <section>
         <FrameCar frameBg={FrameLogin} carBg={BgLogin} />
 
-        <S.FormLogin>
+        <S.FormLogin onSubmit={handleSubmit(handleLogin)}>
           <h1>Estamos quase lá.</h1>
           <p>Faça seu login para começar uma experiência incrível.</p>
 
@@ -30,8 +57,9 @@ export default function Login() {
               isIcon
               Icon={EmailInputSvg}
               name="email"
-              type="email"
               placeholder="E-mail"
+              error={errors.email}
+              {...register('email')}
             />
 
             <Input
@@ -41,12 +69,16 @@ export default function Login() {
               name="password"
               type={'password'}
               placeholder="Senha"
+              error={errors.password}
+              {...register('password')}
             />
           </FormControl>
 
           <ButtonLink text="Esqueci minha senha" />
 
-          <Button className="login_button">Login</Button>
+          <Button type="submit" className="login_button" disabled={!isValid}>
+            Login
+          </Button>
           <Button className="register_button">Criar conta gratuita</Button>
         </S.FormLogin>
       </section>

@@ -6,7 +6,6 @@ import {
 } from 'react'
 import { FieldError } from 'react-hook-form'
 
-import PasswordInputSvg from '../../../public/icons/password-input.svg'
 import HiddenPasswordInputSvg from '../../../public/icons/hidden-password-input.svg'
 
 import * as S from './style'
@@ -33,24 +32,30 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
   const typePassword = passwordInputType ? 'password' : 'name'
 
   return (
-    <S.Container>
-      {isIcon && <label htmlFor={name}>{<Icon />}</label>}
-
-      <div>
-        <input
-          name={name}
-          id={name}
-          type={isPassword ? typePassword : type}
-          ref={ref}
-          {...rest}
-        />
-        {isPassword && (
-          <button onClick={handleClickOnInputPassword}>
-            <HiddenPasswordInputSvg />
-          </button>
+    <>
+      <S.Container>
+        {isIcon && (
+          <S.LabelIcon htmlFor={name} error={!!error}>
+            {<Icon />}
+          </S.LabelIcon>
         )}
-      </div>
-    </S.Container>
+
+        <div>
+          <input
+            name={name}
+            id={name}
+            type={isPassword ? typePassword : type}
+            ref={ref}
+            {...rest}
+          />
+          {isPassword && (
+            <button type="button" onClick={handleClickOnInputPassword}>
+              <HiddenPasswordInputSvg />
+            </button>
+          )}
+        </div>
+      </S.Container>
+    </>
   )
 }
 
