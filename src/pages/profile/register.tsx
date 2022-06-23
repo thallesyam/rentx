@@ -19,6 +19,7 @@ import UserInputSvg from '../../../public/icons/user-input.svg'
 
 import * as S from '@styles/pages/Register'
 import { FormControl } from '@components/form-control'
+import { Modal } from '@components/modal'
 
 type IRegisterForm = {
   name: string
@@ -115,6 +116,8 @@ export default function Register() {
 
         <FrameCar frameBg={FrameLogin} carBg={BgRegister} />
       </section>
+
+      <Modal isOpen={true}>debug</Modal>
     </S.Container>
   )
 }

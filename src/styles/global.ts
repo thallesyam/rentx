@@ -47,6 +47,15 @@ export default createGlobalStyle`
     text-decoration: none;
     color: var(--black);
   }
+
+  .ReactModal__Overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999;
+  }
+
   
   :root {
     --red-900: ${(props) => props.theme.colors['red-900']};
