@@ -56,7 +56,14 @@ export default createGlobalStyle`
     z-index: 999;
   }
 
-  
+  .modal_success {
+    width: 100%;
+    max-width: 400px;
+    height: 448px;
+
+    background-color: var(--black-700);
+  }
+
   :root {
     --red-900: ${(props) => props.theme.colors['red-900']};
     --red-500: ${(props) => props.theme.colors['red-500']};
@@ -72,6 +79,7 @@ export default createGlobalStyle`
     --gray-700: ${(props) => props.theme.colors['gray-700']};
     --gray-600: ${(props) => props.theme.colors['gray-600']};
     --gray-500: ${(props) => props.theme.colors['gray-500']};
+    --gray-400: ${(props) => props.theme.colors['gray-400']};
     --gray-300: ${(props) => props.theme.colors['gray-300']};
     --gray-200: ${(props) => props.theme.colors['gray-200']};
     --gray-100: ${(props) => props.theme.colors['gray-100']};

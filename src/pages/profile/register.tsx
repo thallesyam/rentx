@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next'
-import { ReactElement, useCallback, useEffect, useState } from 'react'
+import { ReactElement } from 'react'
 
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -9,6 +9,8 @@ import { FrameCar } from '@components/frame-car'
 import { Layout } from '@components/layout'
 import { Input } from '@components/input'
 import { Button } from '@components/button'
+import { FormControl } from '@components/form-control'
+import { SuccessModal } from '@components/success-modal'
 
 import BgRegister from '../../../public/images/bg-register.png'
 import FrameLogin from '../../../public/images/frame-login.png'
@@ -18,8 +20,7 @@ import CarInputSvg from '../../../public/icons/car-input.svg'
 import UserInputSvg from '../../../public/icons/user-input.svg'
 
 import * as S from '@styles/pages/Register'
-import { FormControl } from '@components/form-control'
-import { Modal } from '@components/modal'
+import { useModal } from 'src/hooks/useModal'
 
 type IRegisterForm = {
   name: string
@@ -38,6 +39,7 @@ const registerSchema = yup.object().shape({
 })
 
 export default function Register() {
+  const { isOpen } = useModal()
   const {
     register,
     handleSubmit,
@@ -117,7 +119,13 @@ export default function Register() {
         <FrameCar frameBg={FrameLogin} carBg={BgRegister} />
       </section>
 
-      <Modal isOpen={true}>debug</Modal>
+      {isOpen && (
+        <SuccessModal
+          title="Conta criada"
+          content="Agora você parte da RentX."
+          type="register"
+        />
+      )}
     </S.Container>
   )
 }
