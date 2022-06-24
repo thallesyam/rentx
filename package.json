@@ -6,14 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.1",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.13",
-    "firebase": "^9.8.3",
+    "graphql": "^16.5.0",
     "next": "12.1.6",
+    "nookies": "^2.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.32.2",
@@ -24,6 +26,11 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/import-types-preset": "^2.1.20",
+    "@graphql-codegen/typescript": "^2.5.1",
+    "@graphql-codegen/typescript-operations": "^2.4.2",
+    "@graphql-codegen/typescript-urql": "^3.5.12",
     "@types/react-modal": "^3.13.1",
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.28.0",

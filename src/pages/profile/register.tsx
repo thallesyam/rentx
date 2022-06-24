@@ -5,6 +5,12 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
+import { useModal } from 'src/hooks/useModal'
+import {
+  useCreateClientMutation,
+  usePublishClientMutation,
+} from 'src/generated/graphql'
+
 import { FrameCar } from '@components/frame-car'
 import { Layout } from '@components/layout'
 import { Input } from '@components/input'
@@ -20,12 +26,13 @@ import CarInputSvg from '../../../public/icons/car-input.svg'
 import UserInputSvg from '../../../public/icons/user-input.svg'
 
 import * as S from '@styles/pages/Register'
-import { useModal } from 'src/hooks/useModal'
+import { setCookie } from 'nookies'
+import { useRouter } from 'next/router'
 
 type IRegisterForm = {
   name: string
   email: string
-  cnh: string
+  cnh: number
   password: string
   password_confirm: string
 }
@@ -33,13 +40,17 @@ type IRegisterForm = {
 const registerSchema = yup.object().shape({
   name: yup.string().required('Nome obrigatório'),
   email: yup.string().required('Email obrigatório'),
-  cnh: yup.string().required('CNH obrigatória'),
+  cnh: yup.number().required('CNH obrigatória'),
   password: yup.string().required('Senha obrigatória'),
   password_confirm: yup.string().required('Confirmação de senha obrigatória'),
 })
 
 export default function Register() {
+  const router = useRouter()
   const { isOpen } = useModal()
+  const [{}, createClient] = useCreateClientMutation()
+  const [{}, publishClient] = usePublishClientMutation()
+
   const {
     register,
     handleSubmit,
@@ -50,7 +61,39 @@ export default function Register() {
   })
 
   const handleRegister: SubmitHandler<IRegisterForm> = async (values) => {
-    console.log(values)
+    const { cnh, name, email, password } = values
+
+    const data = {
+      name,
+      email,
+      cnh,
+      password,
+    }
+
+    try {
+      const {
+        data: { createClient: userDraft },
+      } = await createClient({
+        data,
+      })
+
+      const { id: userId } = userDraft
+
+      if (!userId) {
+        return
+      }
+
+      await publishClient({ data: { id: userId } })
+
+      setCookie(null, '@rentx:userId', userId, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      })
+
+      router.push('/profile')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
