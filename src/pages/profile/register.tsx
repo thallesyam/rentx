@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next'
-import { ReactElement } from 'react'
+import { ReactElement, useCallback } from 'react'
 
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -47,7 +47,7 @@ const registerSchema = yup.object().shape({
 
 export default function Register() {
   const router = useRouter()
-  const { isOpen } = useModal()
+  const { isOpen, toggle } = useModal()
   const [{}, createClient] = useCreateClientMutation()
   const [{}, publishClient] = usePublishClientMutation()
 
@@ -90,11 +90,16 @@ export default function Register() {
         path: '/',
       })
 
-      router.push('/profile')
+      toggle()
     } catch (error) {
       console.log(error)
     }
   }
+
+  const handleClickConfirmRegister = useCallback(() => {
+    toggle()
+    router.push('/profile')
+  }, [])
 
   return (
     <S.Container>
@@ -167,6 +172,7 @@ export default function Register() {
           title="Conta criada"
           content="Agora você parte da RentX."
           type="register"
+          onClick={handleClickConfirmRegister}
         />
       )}
     </S.Container>
