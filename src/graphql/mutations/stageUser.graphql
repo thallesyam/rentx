@@ -1,5 +1,0 @@
-mutation PublishClient($data: ClientWhereUniqueInput!) {
-  publishClient(where: $data, to: PUBLISHED) {
-    id
-  }
-}

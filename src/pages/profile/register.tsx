@@ -6,10 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 import { useModal } from 'src/hooks/useModal'
-import {
-  useCreateClientMutation,
-  usePublishClientMutation,
-} from 'src/generated/graphql'
+import { useCreateClientMutation } from 'src/generated/graphql'
 
 import { FrameCar } from '@components/frame-car'
 import { Layout } from '@components/layout'
@@ -49,7 +46,6 @@ export default function Register() {
   const router = useRouter()
   const { isOpen, toggle } = useModal()
   const [{}, createClient] = useCreateClientMutation()
-  const [{}, publishClient] = usePublishClientMutation()
 
   const {
     register,
@@ -82,8 +78,6 @@ export default function Register() {
       if (!userId) {
         return
       }
-
-      await publishClient({ data: { id: userId } })
 
       setCookie(null, '@rentx:userId', userId, {
         maxAge: 30 * 24 * 60 * 60,

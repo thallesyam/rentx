@@ -10,8 +10,13 @@ const isServerSide = typeof window === 'undefined'
 const ssrCache = ssrExchange({ isClient: !isServerSide })
 
 const client = createClient({
-  url: 'https://api-sa-east-1.graphcms.com/v2/cl4sj5gxj24dx01wgfockde4e/master',
+  url: process.env.NEXT_PUBLIC_GRAPHCMS_API_ENDPOINT,
   exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
+  fetchOptions: {
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
+    },
+  },
 })
 
 export { client, ssrCache }
