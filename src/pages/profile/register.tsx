@@ -45,7 +45,7 @@ const registerSchema = yup.object().shape({
 export default function Register() {
   const router = useRouter()
   const { isOpen, toggle } = useModal()
-  const [{}, createClient] = useCreateClientMutation()
+  const [createClient] = useCreateClientMutation()
 
   const {
     register,
@@ -70,7 +70,9 @@ export default function Register() {
       const {
         data: { createClient: userDraft },
       } = await createClient({
-        data,
+        variables: {
+          data,
+        },
       })
 
       const { id: userId } = userDraft

@@ -10,6 +10,7 @@
     "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.9",
     "@hookform/resolvers": "^2.9.1",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.13",
@@ -22,7 +23,6 @@
     "react-modal": "^3.15.1",
     "styled-components": "^5.3.5",
     "typescript": "^4.7.3",
-    "urql": "^2.2.2",
     "yup": "^0.32.11"
   },
   "devDependencies": {
@@ -30,7 +30,9 @@
     "@graphql-codegen/import-types-preset": "^2.1.20",
     "@graphql-codegen/typescript": "^2.5.1",
     "@graphql-codegen/typescript-operations": "^2.4.2",
-    "@graphql-codegen/typescript-urql": "^3.5.12",
+    "@graphql-codegen/typescript-react-apollo": "^3.2.16",
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.13",
     "@types/react-modal": "^3.13.1",
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
