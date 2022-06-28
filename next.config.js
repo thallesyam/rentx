@@ -3,7 +3,6 @@ const withImages = require('next-images')
 
 module.exports = withImages({
   exclude: path.resolve(__dirname, 'src/assets/svg'),
-
   images: {
     disableStaticImages: true,
   },

@@ -27,8 +27,10 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
-        <UserProvider>{getLayout(<Component {...pageProps} />)}</UserProvider>
-        <GlobalStyle />
+        <UserProvider>
+          {getLayout(<Component {...pageProps} />)}
+          <GlobalStyle />
+        </UserProvider>
       </ThemeProvider>
     </ApolloProvider>
   )
