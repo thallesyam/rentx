@@ -1,14 +1,14 @@
 import { GetServerSidePropsContext, PreviewData } from 'next'
 import { ParsedUrlQuery } from 'querystring'
-import nookies from 'nookies'
+import { getUserIdSSR } from './getUserIdSSR'
 
 export function isLoggedRedirect(
   path: string,
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 ) {
-  const isLogged = nookies.get(context)
+  const isLogged = getUserIdSSR(context)
 
-  if (isLogged['@rentx:userId']) {
+  if (isLogged) {
     return {
       redirect: {
         permanent: false,
@@ -22,9 +22,9 @@ export function isNotLoggedRedirect(
   path: string,
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 ) {
-  const isLogged = nookies.get(context)
+  const isLogged = getUserIdSSR(context)
 
-  if (!isLogged['@rentx:userId']) {
+  if (!isLogged) {
     return {
       redirect: {
         permanent: false,

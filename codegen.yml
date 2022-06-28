@@ -1,17 +1,16 @@
 overwrite: true
-
 schema: 'https://api-sa-east-1.graphcms.com/v2/cl4sj5gxj24dx01wgfockde4e/master'
-
 documents: './src/graphql/**/*.graphql'
-
 generates:
   src/generated/graphql.tsx:
     plugins:
-      - typescript
-      - typescript-operations
-      - typescript-react-apollo
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
     config:
       reactApolloVersion: 3
       withHooks: true
       withHOC: false
-      withComponents: false
+      withComponent: false
+      exportFragmentSpreadSubTypes: true
+      documentMode: graphQLTag

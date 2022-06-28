@@ -1,0 +1,10 @@
+query User($id: ID!) {
+  client(where: { id: $id }) {
+    email
+    name
+    cnh
+    image {
+      url
+    }
+  }
+}
