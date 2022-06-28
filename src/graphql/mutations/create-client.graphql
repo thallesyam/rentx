@@ -1,5 +1,12 @@
-mutation CreateClient($data: ClientCreateInput!) {
-  createClient(data: $data) {
+mutation CreateClient(
+  $name: String!
+  $email: String!
+  $cnh: Int!
+  $password: String!
+) {
+  createClient(
+    data: { name: $name, email: $email, cnh: $cnh, password: $password }
+  ) {
     id
   }
 }

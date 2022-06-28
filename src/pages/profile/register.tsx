@@ -1,12 +1,14 @@
 import { GetServerSideProps } from 'next'
 import { ReactElement, useCallback } from 'react'
-
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { setCookie } from 'nookies'
+import { useRouter } from 'next/router'
 
 import { useModal } from 'src/hooks/useModal'
 import { useCreateClientMutation } from 'src/generated/graphql'
+import { isLoggedRedirect } from 'src/utils/login-redirects'
 
 import { FrameCar } from '@components/frame-car'
 import { Layout } from '@components/layout'
@@ -14,6 +16,7 @@ import { Input } from '@components/input'
 import { Button } from '@components/button'
 import { FormControl } from '@components/form-control'
 import { SuccessModal } from '@components/success-modal'
+import { Spinner } from '@components/spinner'
 
 import BgRegister from '../../../public/images/bg-register.png'
 import FrameLogin from '../../../public/images/frame-login.png'
@@ -23,8 +26,6 @@ import CarInputSvg from '../../../public/icons/car-input.svg'
 import UserInputSvg from '../../../public/icons/user-input.svg'
 
 import * as S from '@styles/pages/Register'
-import { setCookie } from 'nookies'
-import { useRouter } from 'next/router'
 
 type IRegisterForm = {
   name: string
@@ -45,7 +46,7 @@ const registerSchema = yup.object().shape({
 export default function Register() {
   const router = useRouter()
   const { isOpen, toggle } = useModal()
-  const [createClient] = useCreateClientMutation()
+  const [createClient, { loading }] = useCreateClientMutation()
 
   const {
     register,
@@ -155,8 +156,12 @@ export default function Register() {
             />
           </FormControl>
 
-          <Button type="submit" className="register_button" disabled={!isValid}>
-            Cadastrar
+          <Button
+            type="submit"
+            className="register_button"
+            disabled={!isValid || loading}
+          >
+            {loading ? <Spinner /> : 'Cadastrar'}
           </Button>
         </S.FormRegister>
 
@@ -176,15 +181,10 @@ export default function Register() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const isLogged = false
+  const isLogged = isLoggedRedirect('/profile', context)
 
-  if (isLogged) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/profile',
-      },
-    }
+  if (!!isLogged) {
+    return isLogged
   }
 
   return {

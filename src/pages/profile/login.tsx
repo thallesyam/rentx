@@ -1,14 +1,18 @@
 import { GetServerSideProps } from 'next'
 import { ReactElement, useCallback } from 'react'
-
+import { useRouter } from 'next/router'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
+
+import { isLoggedRedirect } from 'src/utils/login-redirects'
 
 import { FrameCar } from '@components/frame-car'
 import { Layout } from '@components/layout'
 import { Input } from '@components/input'
 import { Button } from '@components/button'
+import { FormControl } from '@components/form-control'
+import { ButtonLink } from '@components/button-link'
 
 import BgLogin from '../../../public/images/bg-home.png'
 import FrameLogin from '../../../public/images/frame-login.png'
@@ -16,9 +20,6 @@ import EmailInputSvg from '../../../public/icons/email-input.svg'
 import PasswordInputSvg from '../../../public/icons/password-input.svg'
 
 import * as S from '@styles/pages/Login'
-import { FormControl } from '@components/form-control'
-import { ButtonLink } from '@components/button-link'
-import { useRouter } from 'next/router'
 
 type ILoginForm = {
   email: string
@@ -96,15 +97,10 @@ export default function Login() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const isLogged = false
+  const isLogged = isLoggedRedirect('/profile', context)
 
-  if (isLogged) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/profile',
-      },
-    }
+  if (!isLogged) {
+    return isLogged
   }
 
   return {
