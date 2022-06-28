@@ -60,19 +60,15 @@ export default function Register() {
   const handleRegister: SubmitHandler<IRegisterForm> = async (values) => {
     const { cnh, name, email, password } = values
 
-    const data = {
-      name,
-      email,
-      cnh,
-      password,
-    }
-
     try {
       const {
         data: { createClient: userDraft },
       } = await createClient({
         variables: {
-          data,
+          name,
+          email,
+          cnh,
+          password,
         },
       })
 

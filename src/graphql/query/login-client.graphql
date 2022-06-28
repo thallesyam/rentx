@@ -1,0 +1,8 @@
+query Login($email: String!, $password: String!) {
+  clients(
+    where: { email: $email, AND: { password: $password } }
+    stage: DRAFT
+  ) {
+    id
+  }
+}

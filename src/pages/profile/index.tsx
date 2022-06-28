@@ -3,21 +3,21 @@ import { ReactElement } from 'react'
 import { Layout } from '@components/layout'
 
 import * as S from '@styles/pages/Profile'
+import { isNotLoggedRedirect } from 'src/utils/login-redirects'
 
 export default function Profile() {
   return <S.Container>Profile</S.Container>
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const isLogged = false
+  const isNotLogged = isNotLoggedRedirect('/profile/login', context)
 
-  if (!isLogged) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/profile/login',
-      },
-    }
+  if (!!isNotLogged) {
+    return isNotLogged
+  }
+
+  return {
+    props: {},
   }
 }
 

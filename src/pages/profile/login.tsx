@@ -1,11 +1,12 @@
 import { GetServerSideProps } from 'next'
-import { ReactElement, useCallback } from 'react'
+import { ReactElement, useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 import { isLoggedRedirect } from 'src/utils/login-redirects'
+import { useLoginLazyQuery } from 'src/generated/graphql'
 
 import { FrameCar } from '@components/frame-car'
 import { Layout } from '@components/layout'
@@ -20,6 +21,7 @@ import EmailInputSvg from '../../../public/icons/email-input.svg'
 import PasswordInputSvg from '../../../public/icons/password-input.svg'
 
 import * as S from '@styles/pages/Login'
+import { setCookie } from 'nookies'
 
 type ILoginForm = {
   email: string
@@ -33,6 +35,9 @@ const loginSchema = yup.object().shape({
 
 export default function Login() {
   const router = useRouter()
+  const [clients] = useLoginLazyQuery()
+  const [error, setError] = useState<string | undefined>(undefined)
+
   const {
     register,
     handleSubmit,
@@ -47,7 +52,30 @@ export default function Login() {
   }, [])
 
   const handleLogin: SubmitHandler<ILoginForm> = async (values) => {
-    console.log(values)
+    const { email, password } = values
+
+    const {
+      data: { clients: client },
+    } = await clients({
+      variables: {
+        email,
+        password,
+      },
+    })
+
+    if (client.length <= 0) {
+      setError('Email ou senha inválido')
+      return
+    }
+
+    const { id } = client?.[0]
+
+    setCookie(null, '@rentx:userId', id, {
+      maxAge: 30 * 24 * 60 * 60,
+      path: '/',
+    })
+
+    router.push('/profile')
   }
 
   return (
@@ -64,7 +92,7 @@ export default function Login() {
               Icon={EmailInputSvg}
               name="email"
               placeholder="E-mail"
-              error={errors.email}
+              error={errors.email || error}
               {...register('email')}
             />
 
@@ -75,7 +103,7 @@ export default function Login() {
               name="password"
               type={'password'}
               placeholder="Senha"
-              error={errors.password}
+              error={errors.password || error}
               {...register('password')}
             />
           </FormControl>
@@ -99,7 +127,7 @@ export default function Login() {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const isLogged = isLoggedRedirect('/profile', context)
 
-  if (!isLogged) {
+  if (!!isLogged) {
     return isLogged
   }
 
