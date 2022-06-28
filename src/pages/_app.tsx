@@ -3,12 +3,13 @@ import { AppProps } from 'next/app'
 import { ReactElement, ReactNode } from 'react'
 import { ThemeProvider } from 'styled-components'
 import ReactModal from 'react-modal'
+import { ApolloProvider } from '@apollo/client'
 
 import { client } from 'src/services/apollo'
+import { UserProvider } from 'src/contexts/UserContext'
 
 import GlobalStyle from '@styles/global'
 import theme from '@styles/theme'
-import { ApolloProvider } from '@apollo/client'
 
 ReactModal.setAppElement('#__next')
 
@@ -26,8 +27,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
-        {getLayout(<Component {...pageProps} />)}
-
+        <UserProvider>{getLayout(<Component {...pageProps} />)}</UserProvider>
         <GlobalStyle />
       </ThemeProvider>
     </ApolloProvider>
