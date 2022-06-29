@@ -16,7 +16,7 @@ import UserInputSvg from '../../../public/icons/user-input.svg'
 import CarInputSvg from '../../../public/icons/car-input.svg'
 
 import * as S from './styles'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { useModal } from 'src/hooks/useModal'
 import { useRouter } from 'next/router'
 import { SuccessModal } from '@components/success-modal'
@@ -33,10 +33,11 @@ type Props = {
 }
 
 export function ProfileInfo({ user, image }: Props) {
-  const { userId } = useUserContext()
-  const [updateClient] = useUpdateClientMutation()
-  const { isOpen, toggle } = useModal()
   const router = useRouter()
+  const [updateClient] = useUpdateClientMutation()
+  const [error, isError] = useState(false)
+  const { userId } = useUserContext()
+  const { isOpen, toggle } = useModal()
 
   const {
     register,
@@ -48,11 +49,21 @@ export function ProfileInfo({ user, image }: Props) {
   })
 
   const handleUpdate: SubmitHandler<UserResponseQuery> = async (values) => {
-    const { cnh, name, email } = values
+    const { cnh, name, email, image: actual_image } = values
+
+    if (
+      cnh === user.cnh &&
+      name === user.name &&
+      email === user.email &&
+      actual_image === user.image
+    ) {
+      return
+    }
 
     const upload = await uploadImage(image)
 
     if (!upload) {
+      isError(true)
       return
     }
 
@@ -67,6 +78,7 @@ export function ProfileInfo({ user, image }: Props) {
     })
 
     if (!data.updateClient.id) {
+      isError(true)
       return
     }
 
@@ -109,7 +121,11 @@ export function ProfileInfo({ user, image }: Props) {
         {...register('cnh')}
       />
 
-      <Button type="submit" className="update_button" disabled={!isValid}>
+      <Button
+        type="submit"
+        className="update_button"
+        disabled={!isValid || error}
+      >
         Salvar alterações
       </Button>
 
