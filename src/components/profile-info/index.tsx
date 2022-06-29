@@ -16,9 +16,8 @@ import UserInputSvg from '../../../public/icons/user-input.svg'
 import CarInputSvg from '../../../public/icons/car-input.svg'
 
 import * as S from './styles'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useModal } from 'src/hooks/useModal'
-import { useRouter } from 'next/router'
 import { SuccessModal } from '@components/success-modal'
 
 const registerSchema = yup.object().shape({
@@ -33,7 +32,6 @@ type Props = {
 }
 
 export function ProfileInfo({ user, image }: Props) {
-  const router = useRouter()
   const [updateClient] = useUpdateClientMutation()
   const [error, setIsError] = useState<string | undefined>()
   const { userId } = useUserContext()
@@ -56,7 +54,7 @@ export function ProfileInfo({ user, image }: Props) {
     }
 
     try {
-      if (!image) {
+      if (!image.name) {
         await updateClient({
           variables: {
             id: userId,
@@ -89,10 +87,9 @@ export function ProfileInfo({ user, image }: Props) {
     }
   }
 
-  const handleClickConfirmUpdate = useCallback(() => {
+  const handleClickConfirmUpdate = () => {
     toggle()
-    router.push('/profile')
-  }, [])
+  }
 
   return (
     <S.Container onSubmit={handleSubmit(handleUpdate)}>
@@ -129,7 +126,7 @@ export function ProfileInfo({ user, image }: Props) {
         Salvar alterações
       </Button>
 
-      {isOpen && (
+      {!isOpen && (
         <SuccessModal
           title="Feito!"
           content="Agora sua informações"

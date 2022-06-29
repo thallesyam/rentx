@@ -60,7 +60,7 @@ export function PasswordChange({
     }
 
     try {
-      if (!image) {
+      if (!image.name) {
         await updateClient({
           variables: {
             id: userId,
@@ -89,10 +89,10 @@ export function PasswordChange({
     }
   }
 
-  const handleClickConfirmUpdate = useCallback(() => {
+  const handleClickConfirmUpdate = () => {
     toggle()
     window.location.reload()
-  }, [])
+  }
 
   return (
     <S.Container onSubmit={handleSubmit(handleUpdatePassword)}>
