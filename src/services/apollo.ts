@@ -6,4 +6,5 @@ export const client = new ApolloClient({
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
   },
   cache: new InMemoryCache(),
+  ssrMode: typeof window === 'undefined',
 })

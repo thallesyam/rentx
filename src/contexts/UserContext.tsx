@@ -3,6 +3,7 @@ import { createContext, ReactNode, useEffect, useState } from 'react'
 
 type UserContextProps = {
   isLogged: boolean
+  userId: string
 }
 
 type Props = {
@@ -12,13 +13,20 @@ type Props = {
 export const UserContext = createContext({} as UserContextProps)
 
 export function UserProvider({ children }: Props) {
-  const [isLogged, setIsLogged] = useState(false)
+  const [isLogged, setIsLogged] = useState('')
 
   useEffect(() => {
-    setIsLogged(!!parseCookies(null, '@rentx:userId')['@rentx:userId'])
+    setIsLogged(parseCookies(null, '@rentx:userId')['@rentx:userId'])
   }, [])
 
   return (
-    <UserContext.Provider value={{ isLogged }}>{children}</UserContext.Provider>
+    <UserContext.Provider
+      value={{
+        isLogged: !!isLogged,
+        userId: isLogged,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
   )
 }

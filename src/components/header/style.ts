@@ -12,7 +12,7 @@ export const Container = styled.header`
 
   > section {
     width: 100%;
-    max-width: 956px;
+    max-width: 1128px;
     display: flex;
     justify-content: space-between;
     align-items: center;
