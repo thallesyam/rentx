@@ -35,7 +35,7 @@ type Props = {
 export function ProfileInfo({ user, image }: Props) {
   const router = useRouter()
   const [updateClient] = useUpdateClientMutation()
-  const [error, isError] = useState(false)
+  const [error, setIsError] = useState<string | undefined>()
   const { userId } = useUserContext()
   const { isOpen, toggle } = useModal()
 
@@ -49,40 +49,44 @@ export function ProfileInfo({ user, image }: Props) {
   })
 
   const handleUpdate: SubmitHandler<UserResponseQuery> = async (values) => {
-    const { cnh, name, email, image: actual_image } = values
+    const { cnh, name, email } = values
 
-    if (
-      cnh === user.cnh &&
-      name === user.name &&
-      email === user.email &&
-      actual_image === user.image
-    ) {
+    if (cnh === user.cnh && name === user.name && email === user.email) {
       return
     }
 
-    const upload = await uploadImage(image)
+    try {
+      if (!image) {
+        await updateClient({
+          variables: {
+            id: userId,
+            name,
+            cnh,
+            email,
+            image: user.image,
+          },
+        })
 
-    if (!upload) {
-      isError(true)
-      return
+        toggle()
+        return
+      }
+
+      const upload = await uploadImage(image)
+
+      await updateClient({
+        variables: {
+          id: userId,
+          name,
+          cnh,
+          email,
+          image: upload.url ?? user.image,
+        },
+      })
+
+      toggle()
+    } catch (error) {
+      console.log('Error: ', error)
     }
-
-    const { data } = await updateClient({
-      variables: {
-        id: userId,
-        name,
-        cnh,
-        email,
-        image: upload.url,
-      },
-    })
-
-    if (!data.updateClient.id) {
-      isError(true)
-      return
-    }
-
-    toggle()
   }
 
   const handleClickConfirmUpdate = useCallback(() => {
@@ -97,7 +101,7 @@ export function ProfileInfo({ user, image }: Props) {
         Icon={UserInputSvg}
         name="name"
         placeholder="Nome"
-        error={errors.name}
+        error={errors.name || error}
         defaultValue={user.name}
         {...register('name')}
       />
@@ -107,7 +111,7 @@ export function ProfileInfo({ user, image }: Props) {
         Icon={EmailInputSvg}
         name="email"
         placeholder="E-mail"
-        error={errors.email}
+        error={errors.email || error}
         defaultValue={user.email}
         {...register('email')}
       />
@@ -116,16 +120,12 @@ export function ProfileInfo({ user, image }: Props) {
         Icon={CarInputSvg}
         name="cnh"
         placeholder="CNH"
-        error={errors.cnh}
+        error={errors.cnh || error}
         defaultValue={user.cnh}
         {...register('cnh')}
       />
 
-      <Button
-        type="submit"
-        className="update_button"
-        disabled={!isValid || error}
-      >
+      <Button type="submit" className="update_button" disabled={!isValid}>
         Salvar alterações
       </Button>
 

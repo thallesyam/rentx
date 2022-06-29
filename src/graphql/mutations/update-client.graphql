@@ -1,7 +1,7 @@
 mutation UpdateClient(
   $id: ID!
   $name: String!
-  $email: String!
+  $email: String
   $cnh: Int!
   $image: String!
 ) {

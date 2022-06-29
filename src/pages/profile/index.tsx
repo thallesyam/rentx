@@ -63,7 +63,11 @@ export default function Profile({ user }: Props) {
         {selectedTab === 'info' ? (
           <ProfileInfo user={user} image={image} />
         ) : (
-          <PasswordChange password={user.password} image={image} />
+          <PasswordChange
+            password={user.password}
+            userImage={user?.image ?? ''}
+            image={image}
+          />
         )}
       </S.UserContainer>
 
