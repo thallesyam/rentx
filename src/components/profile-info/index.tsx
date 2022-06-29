@@ -3,6 +3,10 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 import { UserResponseQuery } from 'src/pages/profile'
+import { uploadImage } from 'src/utils/upload-image'
+
+import { useUpdateClientMutation } from 'src/generated/graphql'
+import { useUserContext } from 'src/hooks/useUserContext'
 
 import { Input } from '@components/input'
 import { Button } from '@components/button'
@@ -12,6 +16,10 @@ import UserInputSvg from '../../../public/icons/user-input.svg'
 import CarInputSvg from '../../../public/icons/car-input.svg'
 
 import * as S from './styles'
+import { useCallback } from 'react'
+import { useModal } from 'src/hooks/useModal'
+import { useRouter } from 'next/router'
+import { SuccessModal } from '@components/success-modal'
 
 const registerSchema = yup.object().shape({
   name: yup.string().required('Nome obrigatório'),
@@ -25,6 +33,11 @@ type Props = {
 }
 
 export function ProfileInfo({ user, image }: Props) {
+  const { userId } = useUserContext()
+  const [updateClient] = useUpdateClientMutation()
+  const { isOpen, toggle } = useModal()
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -35,11 +48,35 @@ export function ProfileInfo({ user, image }: Props) {
   })
 
   const handleUpdate: SubmitHandler<UserResponseQuery> = async (values) => {
-    console.log({
-      ...values,
-      image,
+    const { cnh, name, email } = values
+
+    const upload = await uploadImage(image)
+
+    if (!upload) {
+      return
+    }
+
+    const { data } = await updateClient({
+      variables: {
+        id: userId,
+        name,
+        cnh,
+        email,
+        image: upload.url,
+      },
     })
+
+    if (!data.updateClient.id) {
+      return
+    }
+
+    toggle()
   }
+
+  const handleClickConfirmUpdate = useCallback(() => {
+    toggle()
+    router.push('/profile')
+  }, [])
 
   return (
     <S.Container onSubmit={handleSubmit(handleUpdate)}>
@@ -75,6 +112,15 @@ export function ProfileInfo({ user, image }: Props) {
       <Button type="submit" className="update_button" disabled={!isValid}>
         Salvar alterações
       </Button>
+
+      {isOpen && (
+        <SuccessModal
+          title="Feito!"
+          content="Agora sua informações"
+          type="update"
+          onClick={handleClickConfirmUpdate}
+        />
+      )}
     </S.Container>
   )
 }

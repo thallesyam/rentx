@@ -3,9 +3,7 @@ query User($id: ID!) {
     email
     name
     cnh
-    image {
-      url
-    }
     password
+    image
   }
 }

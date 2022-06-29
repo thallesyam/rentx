@@ -19,9 +19,8 @@ const USER_QUERY = gql`
       email
       name
       cnh
-      image {
-        url
-      }
+      password
+      image
     }
   }
 `
@@ -30,9 +29,7 @@ export type UserResponseQuery = {
   email: string
   name: string
   cnh: number
-  image: {
-    url: string
-  }
+  image: string
   password: string
 }
 
@@ -57,7 +54,7 @@ export default function Profile({ user }: Props) {
     <S.Container>
       <S.UserContainer>
         <UserImageCard
-          url={previewImage !== '' ? previewImage : user?.image?.url ?? ''}
+          url={previewImage !== '' ? previewImage : user?.image ?? ''}
           handleChangeImage={handleChangeImage}
         />
 
@@ -66,7 +63,7 @@ export default function Profile({ user }: Props) {
         {selectedTab === 'info' ? (
           <ProfileInfo user={user} image={image} />
         ) : (
-          <PasswordChange password={user.password} />
+          <PasswordChange password={user.password} image={image} />
         )}
       </S.UserContainer>
 
