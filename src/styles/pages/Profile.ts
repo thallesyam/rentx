@@ -17,6 +17,7 @@ export const UserContainer = styled.section`
   position: relative;
 
   padding-top: 2.5rem;
+  padding-right: 4.5rem;
 
   &:before {
     content: '';
@@ -32,4 +33,5 @@ export const UserContainer = styled.section`
 export const ScheduleContainer = styled.section`
   display: flex;
   justify-content: center;
+  padding-left: 4.5rem;
 `

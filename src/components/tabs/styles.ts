@@ -35,7 +35,6 @@ export const Container = styled.div`
   &:before {
     content: '';
     width: 100%;
-    max-width: 381px;
     height: 1px;
     background-color: var(--gray-300);
     position: absolute;

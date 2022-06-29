@@ -8,6 +8,8 @@ import { getUserIdSSR } from 'src/utils/getUserIdSSR'
 import { Layout } from '@components/layout'
 import { UserImageCard } from '@components/user-image-card'
 import { Tabs } from '@components/tabs'
+import { ProfileInfo } from '@components/profile-info'
+import { PasswordChange } from '@components/password-change'
 
 import * as S from '@styles/pages/Profile'
 
@@ -31,6 +33,7 @@ export type UserResponseQuery = {
   image: {
     url: string
   }
+  password: string
 }
 
 type Props = {
@@ -60,7 +63,11 @@ export default function Profile({ user }: Props) {
 
         <Tabs selectedTab={selectedTab} handleChangeTab={handleChangeTab} />
 
-        {selectedTab === 'info' ? <p>info</p> : <p>senha</p>}
+        {selectedTab === 'info' ? (
+          <ProfileInfo user={user} image={image} />
+        ) : (
+          <PasswordChange password={user.password} />
+        )}
       </S.UserContainer>
 
       <S.ScheduleContainer>ScheduleContainer</S.ScheduleContainer>

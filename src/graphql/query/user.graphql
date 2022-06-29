@@ -6,5 +6,6 @@ query User($id: ID!) {
     image {
       url
     }
+    password
   }
 }
