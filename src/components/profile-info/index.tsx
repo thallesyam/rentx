@@ -126,7 +126,7 @@ export function ProfileInfo({ user, image }: Props) {
         Salvar alterações
       </Button>
 
-      {!isOpen && (
+      {isOpen && (
         <SuccessModal
           title="Feito!"
           content="Agora sua informações"
