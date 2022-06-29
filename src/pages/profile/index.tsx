@@ -1,12 +1,13 @@
 import { GetServerSideProps } from 'next'
 import { gql } from '@apollo/client'
-import { ReactElement } from 'react'
+import { ReactElement, useState } from 'react'
 
 import { client } from 'src/services/apollo'
 import { getUserIdSSR } from 'src/utils/getUserIdSSR'
 
 import { Layout } from '@components/layout'
 import { UserImageCard } from '@components/user-image-card'
+import { Tabs } from '@components/tabs'
 
 import * as S from '@styles/pages/Profile'
 
@@ -23,7 +24,7 @@ const USER_QUERY = gql`
   }
 `
 
-type UserResponseQuery = {
+export type UserResponseQuery = {
   email: string
   name: string
   cnh: number
@@ -36,10 +37,30 @@ type Props = {
   user: UserResponseQuery
 }
 export default function Profile({ user }: Props) {
+  const [image, setImage] = useState<File>({} as File)
+  const [previewImage, setPreviewImage] = useState<string>('')
+  const [selectedTab, setSelectedTab] = useState<'info' | 'change'>('info')
+
+  function handleChangeImage(image: File) {
+    setImage(image)
+    setPreviewImage(URL.createObjectURL(image))
+  }
+
+  function handleChangeTab(selected: 'info' | 'change') {
+    setSelectedTab(selected)
+  }
+
   return (
     <S.Container>
       <S.UserContainer>
-        <UserImageCard url={user?.image?.url ?? ''} />
+        <UserImageCard
+          url={previewImage !== '' ? previewImage : user?.image?.url ?? ''}
+          handleChangeImage={handleChangeImage}
+        />
+
+        <Tabs selectedTab={selectedTab} handleChangeTab={handleChangeTab} />
+
+        {selectedTab === 'info' ? <p>info</p> : <p>senha</p>}
       </S.UserContainer>
 
       <S.ScheduleContainer>ScheduleContainer</S.ScheduleContainer>

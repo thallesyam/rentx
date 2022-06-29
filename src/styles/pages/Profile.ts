@@ -12,7 +12,8 @@ export const Container = styled.main`
 
 export const UserContainer = styled.section`
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   position: relative;
 
   padding-top: 2.5rem;

@@ -1,10 +1,14 @@
-import { Button } from '@components/button'
 import CamSvg from '../../../public/icons/cam.svg'
 import EmptyImageSvg from '../../../public/icons/empty-image.svg'
 
 import * as S from './styles'
 
-export function UserImageCard({ url }) {
+type Props = {
+  url: string
+  handleChangeImage: (image: File) => void
+}
+
+export function UserImageCard({ url, handleChangeImage }: Props) {
   return (
     <S.Container>
       {url !== '' ? (
@@ -15,9 +19,16 @@ export function UserImageCard({ url }) {
         </div>
       )}
 
-      <Button>
+      <label htmlFor="image">
         <CamSvg />
-      </Button>
+      </label>
+
+      <input
+        name="image"
+        id="image"
+        type="file"
+        onChange={(event) => handleChangeImage(event.target.files[0])}
+      />
     </S.Container>
   )
 }

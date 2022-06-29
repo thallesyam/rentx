@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.section`
   width: 180px;
   height: 180px;
   position: relative;
@@ -8,6 +8,8 @@ export const Container = styled.div`
 
   > img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 100%;
   }
 
@@ -25,9 +27,14 @@ export const Container = styled.div`
     );
   }
 
-  > button {
+  > input {
+    display: none;
+  }
+
+  > label {
     width: 2.5rem;
     height: 2.5rem;
+    cursor: pointer;
 
     background-color: var(--red-900);
     display: flex;
