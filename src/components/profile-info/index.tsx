@@ -15,7 +15,7 @@ import EmailInputSvg from '../../../public/icons/email-input.svg'
 import UserInputSvg from '../../../public/icons/user-input.svg'
 import CarInputSvg from '../../../public/icons/car-input.svg'
 
-import * as S from './styles'
+import * as S from './style'
 import { useState } from 'react'
 import { useModal } from 'src/hooks/useModal'
 import { SuccessModal } from '@components/success-modal'

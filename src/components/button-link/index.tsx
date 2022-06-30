@@ -1,7 +1,7 @@
 import { Button } from '@components/button'
 import { ButtonHTMLAttributes } from 'react'
 
-import * as S from './styles'
+import * as S from './style'
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string

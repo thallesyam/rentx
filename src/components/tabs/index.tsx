@@ -1,5 +1,5 @@
 import { Button } from '@components/button'
-import * as S from './styles'
+import * as S from './style'
 
 type Props = {
   selectedTab: 'info' | 'change'

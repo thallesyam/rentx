@@ -1,7 +1,7 @@
 import CamSvg from '../../../public/icons/cam.svg'
 import EmptyImageSvg from '../../../public/icons/empty-image.svg'
 
-import * as S from './styles'
+import * as S from './style'
 
 type Props = {
   url: string

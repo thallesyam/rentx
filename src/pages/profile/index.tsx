@@ -71,7 +71,7 @@ export default function Profile({ user }: Props) {
         )}
       </S.UserContainer>
 
-      <S.ScheduleContainer>ScheduleContainer</S.ScheduleContainer>
+      <S.ScheduleContainer></S.ScheduleContainer>
     </S.Container>
   )
 }
