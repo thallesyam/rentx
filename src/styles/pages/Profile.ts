@@ -29,9 +29,3 @@ export const UserContainer = styled.section`
     right: 0;
   }
 `
-
-export const ScheduleContainer = styled.section`
-  display: flex;
-  justify-content: center;
-  padding-left: 4.5rem;
-`

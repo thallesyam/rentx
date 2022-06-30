@@ -10,6 +10,7 @@ import { UserImageCard } from '@components/user-image-card'
 import { Tabs } from '@components/tabs'
 import { ProfileInfo } from '@components/profile-info'
 import { PasswordChange } from '@components/password-change'
+import { ProfileSchedules } from '@components/profile-schedules'
 
 import * as S from '@styles/pages/Profile'
 
@@ -71,7 +72,7 @@ export default function Profile({ user }: Props) {
         )}
       </S.UserContainer>
 
-      <S.ScheduleContainer></S.ScheduleContainer>
+      <ProfileSchedules />
     </S.Container>
   )
 }
