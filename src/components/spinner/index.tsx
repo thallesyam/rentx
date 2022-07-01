@@ -1,4 +1,4 @@
-import * as S from './styles'
+import * as S from './style'
 
 export function Spinner() {
   return (

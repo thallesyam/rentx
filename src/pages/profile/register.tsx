@@ -58,7 +58,11 @@ export default function Register() {
   })
 
   const handleRegister: SubmitHandler<IRegisterForm> = async (values) => {
-    const { cnh, name, email, password } = values
+    const { cnh, name, email, password, password_confirm } = values
+
+    if (password !== password_confirm) {
+      return
+    }
 
     try {
       const {

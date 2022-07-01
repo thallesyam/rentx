@@ -1,0 +1,14 @@
+mutation UpdateClient(
+  $id: ID!
+  $name: String!
+  $email: String
+  $cnh: Int!
+  $image: String!
+) {
+  updateClient(
+    data: { cnh: $cnh, email: $email, image: $image, name: $name }
+    where: { id: $id }
+  ) {
+    id
+  }
+}

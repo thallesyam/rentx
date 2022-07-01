@@ -1,0 +1,5 @@
+query Car($slug: String!) {
+  car(where: { slug: $slug }) {
+    name
+  }
+}

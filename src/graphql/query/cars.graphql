@@ -1,0 +1,13 @@
+query Cars {
+  cars {
+    name
+    price
+    slug
+    images {
+      url
+    }
+    id
+    company
+    supply
+  }
+}

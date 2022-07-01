@@ -5,7 +5,7 @@ import { Button } from '@components/button'
 import SymbolModalSvg from '../../../public/icons/symbol-modal.svg'
 import SuccessModalSvg from '../../../public/icons/success-modal.svg'
 
-import * as S from './styles'
+import * as S from './style'
 
 type Props = {
   title: string
