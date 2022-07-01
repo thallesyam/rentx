@@ -2,10 +2,6 @@ import { ScheduleCard } from '@components/schedule-card'
 
 import * as S from './style'
 
-type Props = {
-  title: string
-}
-
 export function ProfileSchedules() {
   return (
     <S.Container>
