@@ -6,12 +6,6 @@ import { client } from 'src/services/apollo'
 
 import { Layout } from '@components/layout'
 
-import CarAlcoholSvg from '../../public/icons/car-alcohol.svg'
-import CarEletricSvg from '../../public/icons/car-eletric.svg'
-import CarGasolineSvg from '../../public/icons/car-gasoline.svg'
-
-import AudiMockupImage from '../../public/images/audi-mockup.png'
-
 import * as S from '@styles/pages/Home'
 import { CardCar } from '@components/card-car'
 
@@ -66,7 +60,7 @@ export default function Home({ cars }: Props) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query({
     query: CARS_QUERY,
   })

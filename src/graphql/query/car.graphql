@@ -1,5 +1,17 @@
 query Car($slug: String!) {
   car(where: { slug: $slug }) {
     name
+    company
+    capacity
+    description
+    kmH
+    kmS
+    price
+    slug
+    supply
+    manual
+    images {
+      url
+    }
   }
 }

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { setCookie } from 'nookies'
 
 import { isLoggedRedirect } from 'src/utils/login-redirects'
 import { useLoginLazyQuery } from 'src/generated/graphql'
@@ -21,7 +22,6 @@ import EmailInputSvg from '../../../public/icons/email-input.svg'
 import PasswordInputSvg from '../../../public/icons/password-input.svg'
 
 import * as S from '@styles/pages/Login'
-import { setCookie } from 'nookies'
 
 type ILoginForm = {
   email: string
