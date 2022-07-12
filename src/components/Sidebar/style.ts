@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.nav`
+export const Container = styled.aside`
   width: 100%;
   max-width: 5rem;
   height: 100vh;

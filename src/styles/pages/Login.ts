@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.main`
+export const Container = styled.section`
   height: calc(100vh - 5rem);
 
   display: flex;

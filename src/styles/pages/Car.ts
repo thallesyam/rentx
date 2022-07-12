@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const Container = styled.main`
+export const Container = styled.section`
+  width: 100%;
+  max-width: 1128px;
+  margin: 2.5rem auto;
+
   > header {
     display: flex;
     align-items: center;
@@ -8,10 +12,6 @@ export const Container = styled.main`
 
     border-bottom: 1px solid var(--gray-300);
     padding-bottom: 1.5rem;
-
-    width: 100%;
-    max-width: 1128px;
-    margin: 2.5rem auto;
 
     > section {
       display: flex;

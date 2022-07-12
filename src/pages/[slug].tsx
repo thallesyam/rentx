@@ -6,6 +6,7 @@ import { client } from 'src/services/apollo'
 import { CARS_QUERY } from './home'
 
 import { Layout } from '@components/layout'
+import { CarDetailSection } from '@components/car-detail-section'
 
 import ArrowLeft from '../../public/icons/arrow-left.svg'
 
@@ -69,6 +70,8 @@ export default function Car({ car }: Props) {
           </div>
         </section>
       </header>
+
+      <CarDetailSection />
     </S.Container>
   )
 }

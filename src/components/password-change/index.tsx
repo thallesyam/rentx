@@ -9,7 +9,7 @@ import PasswordInputSvg from '../../../public/icons/password-input.svg'
 
 import * as S from './style'
 import { uploadImage } from 'src/utils/upload-image'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useUpdatePasswordMutation } from 'src/generated/graphql'
 import { useModal } from 'src/hooks/useModal'
 import { useUserContext } from 'src/hooks/useUserContext'
