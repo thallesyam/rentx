@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.section`
   width: 100%;
   max-width: 1128px;
-  margin: 2.5rem auto;
+  margin: 0 auto;
 
   > header {
     display: flex;
@@ -12,6 +12,7 @@ export const Container = styled.section`
 
     border-bottom: 1px solid var(--gray-300);
     padding-bottom: 1.5rem;
+    margin-top: 2.5rem;
 
     > section {
       display: flex;
@@ -37,6 +38,18 @@ export const Container = styled.section`
           color: var(--red-900);
         }
       }
+    }
+  }
+
+  > section {
+    display: grid;
+    grid-template-columns: 1fr 384px;
+    height: calc(100vh - 8rem);
+
+    > div {
+      height: 100%;
+      display: flex;
+      align-items: center;
     }
   }
 `

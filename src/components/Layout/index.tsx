@@ -11,6 +11,7 @@ type Props = {
   description?: string
   isSidebar?: boolean
   headerText?: string
+  bgColor?: string
 }
 
 export function Layout({
@@ -19,6 +20,7 @@ export function Layout({
   description = '',
   isSidebar = true,
   headerText = '',
+  bgColor = '#F4F5F6',
 }: Props) {
   return (
     <>
@@ -32,7 +34,7 @@ export function Layout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <S.Container>
+      <S.Container bgColor={bgColor}>
         {isSidebar && <Sidebar />}
 
         <section>

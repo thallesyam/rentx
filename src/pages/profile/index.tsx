@@ -14,6 +14,11 @@ import { ProfileSchedules } from '@components/profile-schedules'
 
 import * as S from '@styles/pages/Profile'
 
+const tabs = [
+  { id: 1, name: 'Dados', tabName: 'info' },
+  { id: 2, name: 'Trocar senha', tabName: 'change' },
+]
+
 const USER_QUERY = gql`
   query User($id: ID!) {
     client(where: { id: $id }) {
@@ -39,15 +44,15 @@ type Props = {
 }
 export default function Profile({ user }: Props) {
   const [image, setImage] = useState<File>({} as File)
-  const [previewImage, setPreviewImage] = useState<string>('')
-  const [selectedTab, setSelectedTab] = useState<'info' | 'change'>('info')
+  const [previewImage, setPreviewImage] = useState('')
+  const [selectedTab, setSelectedTab] = useState('info')
 
   function handleChangeImage(image: File) {
     setImage(image)
     setPreviewImage(URL.createObjectURL(image))
   }
 
-  function handleChangeTab(selected: 'info' | 'change') {
+  function handleChangeTab(selected: string) {
     setSelectedTab(selected)
   }
 
@@ -59,7 +64,11 @@ export default function Profile({ user }: Props) {
           handleChangeImage={handleChangeImage}
         />
 
-        <Tabs selectedTab={selectedTab} handleChangeTab={handleChangeTab} />
+        <Tabs
+          selectedTab={selectedTab}
+          handleChangeTab={handleChangeTab}
+          tabs={tabs}
+        />
 
         {selectedTab === 'info' ? (
           <ProfileInfo user={user} image={image} />

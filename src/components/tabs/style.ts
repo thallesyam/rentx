@@ -3,7 +3,8 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100%;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
   gap: 2rem;
   position: relative;
@@ -29,6 +30,7 @@ export const Container = styled.div`
       background-color: var(--red-900);
       position: absolute;
       bottom: 0;
+      left: 0;
     }
   }
 

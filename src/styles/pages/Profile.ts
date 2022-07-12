@@ -8,6 +8,8 @@ export const Container = styled.section`
 
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  background-color: var(--gray-100);
 `
 
 export const UserContainer = styled.section`
