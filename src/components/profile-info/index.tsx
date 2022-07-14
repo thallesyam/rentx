@@ -126,14 +126,13 @@ export function ProfileInfo({ user, image }: Props) {
         Salvar alterações
       </Button>
 
-      {isOpen && (
-        <SuccessModal
-          title="Feito!"
-          content="Agora sua informações"
-          type="update"
-          onClick={handleClickConfirmUpdate}
-        />
-      )}
+      <SuccessModal
+        title="Feito!"
+        content="Agora sua informações"
+        type="update"
+        onClick={handleClickConfirmUpdate}
+        isOpen={isOpen}
+      />
     </S.Container>
   )
 }

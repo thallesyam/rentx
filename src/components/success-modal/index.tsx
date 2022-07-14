@@ -12,11 +12,18 @@ type Props = {
   content: string
   type?: 'register' | 'update' | ''
   onClick?: () => void
+  isOpen: boolean
 }
 
-export function SuccessModal({ title, content, type = '', onClick }: Props) {
+export function SuccessModal({
+  title,
+  content,
+  type = '',
+  onClick,
+  isOpen,
+}: Props) {
   return (
-    <Modal isOpen={true} className="modal_success">
+    <Modal isOpen={isOpen} className="modal_success">
       <S.Container>
         <SymbolModalSvg />
         <SuccessModalSvg />

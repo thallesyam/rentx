@@ -168,14 +168,13 @@ export default function Register() {
         <FrameCar frameBg={FrameLogin} carBg={BgRegister} />
       </section>
 
-      {isOpen && (
-        <SuccessModal
-          title="Conta criada"
-          content="Agora você parte da RentX."
-          type="register"
-          onClick={handleClickConfirmRegister}
-        />
-      )}
+      <SuccessModal
+        title="Conta criada"
+        content="Agora você parte da RentX."
+        type="register"
+        onClick={handleClickConfirmRegister}
+        isOpen={isOpen}
+      />
     </S.Container>
   )
 }
