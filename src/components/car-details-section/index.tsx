@@ -1,15 +1,11 @@
 import { useState } from 'react'
 
+import { useModal } from 'src/hooks/useModal'
+
 import { Button } from '@components/button'
 import { CarDetailsCard } from '@components/car-details-card'
 import { Tabs } from '@components/tabs'
-
-import CarSpeedometer from '../../../public/icons/car-speedometer.svg'
-import CarSpeedsecond from '../../../public/icons/car-speedsecond.svg'
-import CarCapacity from '../../../public/icons/car-capacity.svg'
-import CarExchange from '../../../public/icons/car-exchange.svg'
-import CarSupply from '../../../public/icons/car-supply.svg'
-import CarHorsePower from '../../../public/icons/car-horsepower.svg'
+import { CalendarModal } from '@components/calendar-modal'
 
 import * as S from './style'
 
@@ -31,9 +27,14 @@ type Props = {
 
 export function CarDetailSection({ carInfos, description, price }: Props) {
   const [selectedTab, setSelectedTab] = useState('about')
+  const { isOpen, toggle } = useModal()
 
   function handleChangeTab(selected: string) {
     setSelectedTab(selected)
+  }
+
+  function handleSelectDate() {
+    toggle()
   }
 
   return (
@@ -49,12 +50,17 @@ export function CarDetailSection({ carInfos, description, price }: Props) {
           selectedTab={selectedTab}
           handleChangeTab={handleChangeTab}
           tabs={tabs}
+          toggle={toggle}
         />
 
         {selectedTab === 'about' ? (
           <>
             <p>{description}</p>
-            <Button type="submit" className="rent_button">
+            <Button
+              type="submit"
+              className="rent_button"
+              onClick={() => toggle()}
+            >
               Escolher período do aluguel
             </Button>
           </>
@@ -62,6 +68,8 @@ export function CarDetailSection({ carInfos, description, price }: Props) {
           <p>{price}</p>
         )}
       </section>
+
+      <CalendarModal onClick={handleSelectDate} isOpen={isOpen} />
     </S.Container>
   )
 }

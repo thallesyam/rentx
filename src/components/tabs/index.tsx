@@ -4,6 +4,7 @@ import * as S from './style'
 type Props = {
   selectedTab: string
   handleChangeTab: (selected: string) => void
+  toggle?: () => void
   tabs: {
     id: number
     name: string
@@ -11,12 +12,22 @@ type Props = {
   }[]
 }
 
-export function Tabs({ selectedTab, handleChangeTab, tabs }: Props) {
+export function Tabs({ selectedTab, handleChangeTab, tabs, toggle }: Props) {
+  const isRentDate = false
+  const canOpenModalCalendar = selectedTab === 'about' && !isRentDate
+
   return (
     <S.Container>
       {tabs.map((tab) => (
         <Button
-          onClick={() => handleChangeTab(tab.tabName)}
+          onClick={() => {
+            if (canOpenModalCalendar && tab.tabName === 'time') {
+              toggle()
+              return
+            }
+
+            handleChangeTab(tab.tabName)
+          }}
           key={tab.id}
           className={tab.tabName === selectedTab ? 'isCurrent' : ''}
         >

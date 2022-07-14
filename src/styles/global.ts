@@ -54,6 +54,7 @@ export default createGlobalStyle`
     justify-content: center;
 
     z-index: 999;
+    background-color: rgba(0, 0, 0, 0.5) !important;
   }
 
   .modal_success {
@@ -62,6 +63,14 @@ export default createGlobalStyle`
     height: 448px;
 
     background-color: var(--black-700);
+  }
+
+  .modal_calendar {
+    width: 100%;
+    max-width: 844px;
+    height: 575px;
+
+    background-color: var(--white-900);
   }
 
   :root {
