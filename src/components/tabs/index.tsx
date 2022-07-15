@@ -5,6 +5,7 @@ type Props = {
   selectedTab: string
   handleChangeTab: (selected: string) => void
   toggle?: () => void
+  isRentDate?: boolean
   tabs: {
     id: number
     name: string
@@ -12,8 +13,13 @@ type Props = {
   }[]
 }
 
-export function Tabs({ selectedTab, handleChangeTab, tabs, toggle }: Props) {
-  const isRentDate = false
+export function Tabs({
+  selectedTab,
+  handleChangeTab,
+  tabs,
+  toggle,
+  isRentDate,
+}: Props) {
   const canOpenModalCalendar = selectedTab === 'about' && !isRentDate
 
   return (

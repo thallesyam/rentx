@@ -27,7 +27,10 @@ type Props = {
 
 export function CarDetailSection({ carInfos, description, price }: Props) {
   const [selectedTab, setSelectedTab] = useState('about')
+  const [date, setDate] = useState(new Date())
   const { isOpen, toggle } = useModal()
+
+  const isRentDate = date[0] !== undefined
 
   function handleChangeTab(selected: string) {
     setSelectedTab(selected)
@@ -47,6 +50,7 @@ export function CarDetailSection({ carInfos, description, price }: Props) {
 
       <section>
         <Tabs
+          isRentDate={isRentDate}
           selectedTab={selectedTab}
           handleChangeTab={handleChangeTab}
           tabs={tabs}
@@ -69,7 +73,12 @@ export function CarDetailSection({ carInfos, description, price }: Props) {
         )}
       </section>
 
-      <CalendarModal onClick={handleSelectDate} isOpen={isOpen} />
+      <CalendarModal
+        onClick={handleSelectDate}
+        isOpen={isOpen}
+        date={date}
+        setDate={setDate}
+      />
     </S.Container>
   )
 }

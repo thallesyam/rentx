@@ -73,6 +73,63 @@ export default createGlobalStyle`
     background-color: var(--white-900);
   }
 
+  .react-calendar { 
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--white-900);
+    border: none;
+    font-family: Inter;
+  }
+
+  .react-calendar__navigation button {
+    color: var(--gray-900);
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: Archivo;
+    text-transform: capitalize;
+
+    background: none;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .react-calendar__navigation button[disabled] {
+    background-color: #f0f0f0;
+  }
+
+  abbr[title] {
+    color: var(--gray-700);
+    font-weight: 600;
+    font-family: Archivo;
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+
+  .react-calendar__tile--now {
+    background: var(--red-100);
+  }
+
+  .react-calendar__tile--active {
+    background: var(--red-100);
+    color: var(--red-900);
+  }
+  
+  .react-calendar__tile--rangeStart, .react-calendar__tile--rangeEnd {
+    background-color: var(--red-900);
+    color: var(--white-900);
+  }
+
+  .react-calendar__tile--active:enabled:hover {
+    background-color: var(--red-100);
+    color: var(--red-900);
+  }
+
+  .react-calendar__tile--active:enabled:focus {
+    background: var(--red-900);
+    color: var(--white-900);
+  }
+  
+
   :root {
     --red-900: ${(props) => props.theme.colors['red-900']};
     --red-500: ${(props) => props.theme.colors['red-500']};

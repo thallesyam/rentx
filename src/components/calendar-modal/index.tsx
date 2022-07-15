@@ -1,6 +1,10 @@
-import { Modal } from '@components/modal'
+import { Dispatch, SetStateAction } from 'react'
+import { format } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
+import { Modal } from '@components/modal'
 import { Button } from '@components/button'
+import { Calendar } from '@components/calendar'
 
 import CloseSvg from '../../../public/icons/close.svg'
 
@@ -9,9 +13,19 @@ import * as S from './style'
 type Props = {
   onClick?: () => void
   isOpen: boolean
+  date: Date
+  setDate: Dispatch<SetStateAction<Date>>
 }
 
-export function CalendarModal({ onClick, isOpen }: Props) {
+export function CalendarModal({ onClick, isOpen, date, setDate }: Props) {
+  const fromFormated = format(date[0] ?? new Date(), "dd 'de' MMMM'", {
+    locale: ptBR,
+  })
+
+  const toFormated = format(date[1] ?? new Date(), "dd 'de' MMMM'", {
+    locale: ptBR,
+  })
+
   return (
     <Modal isOpen={isOpen} className="modal_calendar">
       <S.Container>
@@ -24,9 +38,35 @@ export function CalendarModal({ onClick, isOpen }: Props) {
         </header>
 
         <section>
-          <div className="calendar">thalles</div>
+          <Calendar date={date} setDate={setDate} />
 
-          <div className="input">iuan</div>
+          <form>
+            <div className="input_container">
+              <div>
+                <label htmlFor="from">De</label>
+                <input
+                  type="text"
+                  id="from"
+                  name="from"
+                  readOnly
+                  value={fromFormated}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="to">Até</label>
+                <input
+                  type="text"
+                  id="to"
+                  name="to"
+                  readOnly
+                  value={toFormated}
+                />
+              </div>
+            </div>
+
+            <Button type="submit">Confirmar</Button>
+          </form>
         </section>
       </S.Container>
     </Modal>

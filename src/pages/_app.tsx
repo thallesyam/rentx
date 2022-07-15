@@ -11,6 +11,8 @@ import { UserProvider } from 'src/contexts/UserContext'
 import GlobalStyle from '@styles/global'
 import theme from '@styles/theme'
 
+import 'react-calendar/dist/Calendar.css'
+
 ReactModal.setAppElement('#__next')
 
 type NextPageWithLayout = NextPage & {
