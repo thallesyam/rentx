@@ -12,12 +12,21 @@ import * as S from './style'
 
 type Props = {
   onClick?: () => void
+  toggle?: () => void
   isOpen: boolean
   date: Date
   setDate: Dispatch<SetStateAction<Date>>
+  handleChangeTab: (selected: string) => void
 }
 
-export function CalendarModal({ onClick, isOpen, date, setDate }: Props) {
+export function CalendarModal({
+  onClick,
+  isOpen,
+  date,
+  setDate,
+  toggle,
+  handleChangeTab,
+}: Props) {
   const fromFormated = format(date[0] ?? new Date(), "dd 'de' MMMM'", {
     locale: ptBR,
   })
@@ -25,6 +34,11 @@ export function CalendarModal({ onClick, isOpen, date, setDate }: Props) {
   const toFormated = format(date[1] ?? new Date(), "dd 'de' MMMM'", {
     locale: ptBR,
   })
+
+  function handleSelectedDate() {
+    toggle()
+    handleChangeTab('time')
+  }
 
   return (
     <Modal isOpen={isOpen} className="modal_calendar">
@@ -40,7 +54,7 @@ export function CalendarModal({ onClick, isOpen, date, setDate }: Props) {
         <section>
           <Calendar date={date} setDate={setDate} />
 
-          <form>
+          <form onSubmit={handleSelectedDate}>
             <div className="input_container">
               <div>
                 <label htmlFor="from">De</label>
@@ -65,7 +79,12 @@ export function CalendarModal({ onClick, isOpen, date, setDate }: Props) {
               </div>
             </div>
 
-            <Button type="submit">Confirmar</Button>
+            <Button
+              disabled={date[0] === undefined || date[1] === undefined}
+              type="submit"
+            >
+              Confirmar
+            </Button>
           </form>
         </section>
       </S.Container>

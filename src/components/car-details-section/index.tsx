@@ -6,6 +6,7 @@ import { Button } from '@components/button'
 import { CarDetailsCard } from '@components/car-details-card'
 import { Tabs } from '@components/tabs'
 import { CalendarModal } from '@components/calendar-modal'
+import { RentCheckout } from '@components/rent-checkout'
 
 import * as S from './style'
 
@@ -69,15 +70,17 @@ export function CarDetailSection({ carInfos, description, price }: Props) {
             </Button>
           </>
         ) : (
-          <p>{price}</p>
+          <RentCheckout from={date[0]} to={date[1]} price={price} />
         )}
       </section>
 
       <CalendarModal
+        toggle={toggle}
         onClick={handleSelectDate}
         isOpen={isOpen}
         date={date}
         setDate={setDate}
+        handleChangeTab={handleChangeTab}
       />
     </S.Container>
   )
