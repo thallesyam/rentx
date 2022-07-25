@@ -1,19 +1,37 @@
 import { Button } from '@components/button'
-import { format } from 'date-fns'
+import { Spinner } from '@components/spinner'
+import { format, getUnixTime } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+
+import { useCheckOrdersPerDateAndCarIdQuery } from 'src/generated/graphql'
 
 import ArrowRightCalendarSvg from '../../../public/icons/arrow-right-calendar.svg'
 import CalendarSvg from '../../../public/icons/calendar.svg'
 
 import * as S from './style'
 
+type OrderResponse = {
+  order: {
+    id: string
+  }
+}
+
 type Props = {
   from: Date
   to: Date
   price: number
+  carId: string
 }
 
-export function RentCheckout({ from, to, price }: Props) {
+export function RentCheckout({ from, to, price, carId }: Props) {
+  const { data, loading } = useCheckOrdersPerDateAndCarIdQuery({
+    variables: {
+      carId,
+      dateFrom: getUnixTime(from),
+      dateTo: getUnixTime(to),
+    },
+  })
+
   const daily = to.getDate() - from.getDate()
   const fullPrice = price * daily
 
@@ -67,7 +85,12 @@ export function RentCheckout({ from, to, price }: Props) {
         <h3>{formatedFullPrice}</h3>
       </section>
 
-      <Button type="submit">Alugar agora</Button>
+      <Button
+        type="submit"
+        disabled={data.orderItems.length > 0 || loading === true}
+      >
+        {loading ? <Spinner /> : 'Alugar agora'}
+      </Button>
     </S.Container>
   )
 }

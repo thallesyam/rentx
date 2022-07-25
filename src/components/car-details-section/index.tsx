@@ -24,9 +24,15 @@ type Props = {
   carInfos: CarInfos[]
   description: string
   price: number
+  carId: string
 }
 
-export function CarDetailSection({ carInfos, description, price }: Props) {
+export function CarDetailSection({
+  carInfos,
+  description,
+  price,
+  carId,
+}: Props) {
   const [selectedTab, setSelectedTab] = useState('about')
   const [date, setDate] = useState(new Date())
   const { isOpen, toggle } = useModal()
@@ -70,7 +76,12 @@ export function CarDetailSection({ carInfos, description, price }: Props) {
             </Button>
           </>
         ) : (
-          <RentCheckout from={date[0]} to={date[1]} price={price} />
+          <RentCheckout
+            from={date[0]}
+            to={date[1]}
+            price={price}
+            carId={carId}
+          />
         )}
       </section>
 

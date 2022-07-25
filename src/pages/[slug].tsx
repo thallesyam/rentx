@@ -21,6 +21,7 @@ import * as S from '@styles/pages/Car'
 const CAR_QUERY = gql`
   query Car($slug: String!) {
     car(where: { slug: $slug }) {
+      id
       name
       company
       capacity
@@ -40,6 +41,7 @@ const CAR_QUERY = gql`
 `
 
 type Car = {
+  id: string
   name: string
   company: string
   capacity: number
@@ -97,6 +99,7 @@ export default function Car({ car }: Props) {
           carInfos={carInfos}
           description={car.description}
           price={car.price}
+          carId={car.id}
         />
       </section>
     </S.Container>

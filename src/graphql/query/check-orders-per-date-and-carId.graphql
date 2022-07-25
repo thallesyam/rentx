@@ -1,0 +1,16 @@
+query checkOrdersPerDateAndCarId(
+  $carId: String!
+  $dateFrom: Int!
+  $dateTo: Int!
+) {
+  orderItems(
+    where: {
+      carId: $carId
+      AND: { dateFrom_gte: $dateFrom, dateFrom_lte: $dateTo }
+    }
+  ) {
+    order {
+      id
+    }
+  }
+}
