@@ -1,4 +1,4 @@
-import { Button } from '@components/Button'
+import { Button } from '../Button'
 import { ButtonHTMLAttributes } from 'react'
 
 import * as S from './style'
