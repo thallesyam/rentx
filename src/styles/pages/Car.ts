@@ -5,6 +5,10 @@ export const Container = styled.section`
   max-width: 1128px;
   margin: 0 auto;
 
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+
   > header {
     display: flex;
     align-items: center;
@@ -32,6 +36,10 @@ export const Container = styled.section`
           font-size: 2.25rem;
           font-weight: 600;
           font-family: Archivo;
+
+          @media (max-width: 768px) {
+            font-size: 1.5rem;
+          }
         }
 
         > p {
@@ -46,10 +54,24 @@ export const Container = styled.section`
     grid-template-columns: 1fr 384px;
     height: calc(100vh - 8rem);
 
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
     > div {
       height: 100%;
       display: flex;
       align-items: center;
+
+      @media (max-width: 768px) {
+        padding: 0 1rem;
+
+        > img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
     }
   }
 `

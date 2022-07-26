@@ -17,6 +17,10 @@ export const Container = styled.section`
 
     width: 100%;
     max-width: 1120px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 `
 export const TextContainer = styled.section`
@@ -30,6 +34,10 @@ export const TextContainer = styled.section`
 
     margin-top: 7.5rem;
     margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      text-align: center;
+    }
   }
 
   > p {
@@ -39,6 +47,11 @@ export const TextContainer = styled.section`
 
     max-width: 331px;
     margin-bottom: 4rem;
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+      text-align: center;
+    }
   }
 
   button {
@@ -55,5 +68,12 @@ export const TextContainer = styled.section`
     &:hover {
       filter: brightness(0.8);
     }
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 `

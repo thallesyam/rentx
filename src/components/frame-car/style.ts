@@ -11,9 +11,17 @@ export const Container = styled.section`
 
   .frame {
     position: absolute;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   .car {
     z-index: 1;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 `

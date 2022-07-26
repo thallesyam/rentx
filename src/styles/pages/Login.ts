@@ -14,6 +14,12 @@ export const Container = styled.section`
     align-items: center;
     gap: 8.5rem;
 
+    @media (max-width: 768px) {
+      gap: 0;
+      flex-direction: column;
+      padding: 1rem;
+    }
+
     width: 100%;
     max-width: 1120px;
   }

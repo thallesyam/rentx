@@ -23,6 +23,11 @@ export const Container = styled.a`
     padding: 2rem;
   }
 
+  @media (max-width: 768px) {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
   .car-cardinfo-container {
     border-top: 1px solid var(--gray-300);
 

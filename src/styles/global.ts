@@ -71,6 +71,11 @@ export default createGlobalStyle`
     height: 575px;
 
     background-color: var(--white-900);
+
+    @media (max-width: 768px) {
+      width: 90%; 
+      height: 700px;
+    }
   }
 
   .react-calendar { 

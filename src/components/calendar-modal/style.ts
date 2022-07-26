@@ -38,6 +38,10 @@ export const Container = styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr;
 
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
     > form {
       width: 100%;
       max-width: 256px;
@@ -46,6 +50,11 @@ export const Container = styled.section`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
+      @media (max-width: 768px) {
+        margin: 2rem auto;
+        max-width: 100%;
+      }
 
       .input_container {
         > div {

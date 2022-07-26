@@ -10,6 +10,11 @@ export const Container = styled.section`
   grid-template-columns: 1fr 1fr;
 
   background-color: var(--gray-100);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
 `
 
 export const UserContainer = styled.section`
@@ -21,6 +26,10 @@ export const UserContainer = styled.section`
   padding-top: 2.5rem;
   padding-right: 4.5rem;
 
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+
   &:before {
     content: '';
     width: 1px;
@@ -29,5 +38,9 @@ export const UserContainer = styled.section`
     background-color: var(--gray-300);
     position: absolute;
     right: 0;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 `

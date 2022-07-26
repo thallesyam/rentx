@@ -1,13 +1,13 @@
+import { ReactElement } from 'react'
 import { useRouter } from 'next/router'
 
 import { Button } from '@components/button'
+import { Layout } from '@components/layout'
 
 import RentxIconSvg from '../../../public/icons/rentx-icon-large.svg'
 import CheckSvg from '../../../public/icons/check.svg'
 
 import * as S from '../../styles/pages/Success'
-import { ReactElement } from 'react'
-import { Layout } from '@components/layout'
 
 export default function Success() {
   const router = useRouter()

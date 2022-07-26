@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router'
+import { ReactElement } from 'react'
 
+import { Layout } from '@components/layout'
 import { Button } from '@components/button'
 
 import RentxIconSvg from '../../../public/icons/rentx-icon-large.svg'
 import ErrorSvg from '../../../public/icons/error.svg'
 
-import * as S from '../../styles/pages/Success'
-import { ReactElement } from 'react'
-import { Layout } from '@components/layout'
+import * as S from '../../styles/pages/Error'
 
 export default function Error() {
   const router = useRouter()

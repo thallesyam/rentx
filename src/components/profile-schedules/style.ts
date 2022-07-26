@@ -8,6 +8,11 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
 
+  @media (max-width: 768px) {
+    padding: 0;
+    margin: 2rem auto 0;
+  }
+
   > h1 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;

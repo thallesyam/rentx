@@ -100,5 +100,9 @@ export const Container = styled.form`
     &:hover {
       filter: brightness(0.8);
     }
+
+    @media (max-width: 768px) {
+      margin-bottom: 1rem;
+    }
   }
 `

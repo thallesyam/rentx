@@ -14,6 +14,11 @@ export const Container = styled.section`
     margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--gray-300);
 
+    @media (max-width: 768px) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
     h1 {
       font-family: 'Archivo';
       font-weight: 600;
@@ -31,6 +36,11 @@ export const Container = styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1.5rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      padding: 0 1rem;
+    }
 
     > div {
       border: 1px solid var(--gray-200);

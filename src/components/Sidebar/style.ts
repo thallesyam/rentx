@@ -5,6 +5,14 @@ export const Container = styled.aside`
   max-width: 5rem;
   height: 100vh;
   background-color: var(--black-800);
+
+  @media (max-width: 768px) {
+    width: 100vw;
+    height: 5rem;
+    position: fixed;
+    bottom: 0;
+    max-width: 100vw;
+  }
 `
 export const LogoContainer = styled.section`
   background-color: var(--red-900);
@@ -20,6 +28,10 @@ export const LogoContainer = styled.section`
   &:hover {
     filter: opacity(0.9);
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 export const IconsContainer = styled.section`
   display: flex;
@@ -30,6 +42,12 @@ export const IconsContainer = styled.section`
 
   height: calc(100% - 5rem);
 
+  @media (max-width: 768px) {
+    width: 100vw;
+    flex-direction: row;
+    height: 100%;
+  }
+
   > a {
     display: flex;
     justify-content: center;
@@ -37,6 +55,10 @@ export const IconsContainer = styled.section`
 
     width: 100%;
     height: 3.375rem;
+
+    @media (max-width: 768px) {
+      height: 100%;
+    }
   }
 
   .isActive {

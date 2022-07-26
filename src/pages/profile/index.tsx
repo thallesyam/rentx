@@ -4,6 +4,7 @@ import { ReactElement, useState } from 'react'
 
 import { client } from 'src/services/apollo'
 import { getUserIdSSR } from 'src/utils/getUserIdSSR'
+import { isNotLoggedRedirect } from 'src/utils/login-redirects'
 
 import { Layout } from '@components/layout'
 import { UserImageCard } from '@components/user-image-card'
@@ -124,6 +125,12 @@ export default function Profile({ user, orders }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const isLogged = isNotLoggedRedirect('/profile/login', context)
+
+  if (!!isLogged) {
+    return isLogged
+  }
+
   const userId = getUserIdSSR(context)
   const { data } = await client.query({
     query: USER_QUERY,

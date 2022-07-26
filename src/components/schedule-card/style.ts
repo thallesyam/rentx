@@ -16,6 +16,10 @@ export const CarCard = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
   img {
     width: 288px;
     height: 100%;
@@ -26,6 +30,13 @@ export const CarCard = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+
+    @media (max-width: 768px) {
+      order: 2;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+    }
 
     > div {
       span {

@@ -15,6 +15,12 @@ export const Container = styled.section`
     align-items: center;
     gap: 8.5rem;
 
+    @media (max-width: 768px) {
+      gap: 0;
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
+
     width: 100%;
     max-width: 1120px;
   }
