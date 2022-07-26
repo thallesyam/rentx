@@ -1,4 +1,4 @@
-import { SignInCard } from '@components/SignIn-card'
+import { SignInCard } from '@components/SignInCard'
 import { useRouter } from 'next/router'
 import { destroyCookie } from 'nookies'
 import { useCallback } from 'react'

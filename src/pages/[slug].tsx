@@ -6,7 +6,7 @@ import { client } from 'src/services/apollo'
 import { CARS_QUERY } from './home'
 
 import { Layout } from '@components/Layout'
-import { CarDetailSection } from '@components/Car-details-section'
+import { CarDetailSection } from '@components/CarDetailsSection'
 
 import CarSpeedometer from '../../public/icons/car-speedometer.svg'
 import CarSpeedsecond from '../../public/icons/car-speedsecond.svg'

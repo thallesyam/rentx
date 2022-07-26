@@ -7,7 +7,7 @@ import { client } from 'src/services/apollo'
 import { Layout } from '@components/Layout'
 
 import * as S from '@styles/pages/Home'
-import { CardCar } from '@components/Card-car'
+import { CardCar } from '@components/CardCar'
 
 export const CARS_QUERY = gql`
   query Cars {

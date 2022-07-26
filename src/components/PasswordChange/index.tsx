@@ -12,7 +12,7 @@ import { useState } from 'react'
 import { useUpdatePasswordMutation } from 'src/generated/graphql'
 import { useModal } from 'src/hooks/useModal'
 import { useUserContext } from 'src/hooks/useUserContext'
-import { SuccessModal } from '@components/Success-modal'
+import { SuccessModal } from '@components/SuccessModal'
 
 import * as S from './style'
 

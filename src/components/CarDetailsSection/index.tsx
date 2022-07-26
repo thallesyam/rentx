@@ -3,10 +3,10 @@ import { useState } from 'react'
 import { useModal } from 'src/hooks/useModal'
 
 import { Button } from '@components/Button'
-import { CarDetailsCard } from '@components/Car-details-card'
+import { CarDetailsCard } from '@components/CarDetailsCard'
 import { Tabs } from '@components/Tabs'
-import { CalendarModal } from '@components/Calendar-modal'
-import { RentCheckout } from '@components/Rent-checkout'
+import { CalendarModal } from '@components/CalendarModal'
+import { RentCheckout } from '@components/RentCheckout'
 
 import * as S from './style'
 

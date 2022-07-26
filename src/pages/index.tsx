@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 import { Layout } from '@components/Layout'
 import { Logo } from '@components/Logo'
-import { FrameCar } from '@components/Frame-car'
+import { FrameCar } from '@components/FrameCar'
 import { Button } from '@components/Button'
 
 import BgHome from '../../public/images/bg-home.png'

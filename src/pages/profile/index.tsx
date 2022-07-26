@@ -7,11 +7,11 @@ import { getUserIdSSR } from 'src/utils/getUserIdSSR'
 import { isNotLoggedRedirect } from 'src/utils/login-redirects'
 
 import { Layout } from '@components/Layout'
-import { UserImageCard } from '@components/User-image-card'
+import { UserImageCard } from '@components/UserImageCard'
 import { Tabs } from '@components/Tabs'
-import { ProfileInfo } from '@components/Profile-info'
-import { PasswordChange } from '@components/Password-change'
-import { ProfileSchedules } from '@components/Profile-schedules'
+import { ProfileInfo } from '@components/ProfileInfo'
+import { PasswordChange } from '@components/PasswordChange'
+import { ProfileSchedules } from '@components/ProfileSchedules'
 
 import * as S from '@styles/pages/Profile'
 
