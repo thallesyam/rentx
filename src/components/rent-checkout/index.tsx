@@ -1,20 +1,18 @@
 import { Button } from '@components/button'
 import { Spinner } from '@components/spinner'
-import { format, getUnixTime } from 'date-fns'
+import { format, getUnixTime, intervalToDuration } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import { FormEvent } from 'react'
 
 import { useCheckOrdersPerDateAndCarIdQuery } from 'src/generated/graphql'
+import { useUserContext } from 'src/hooks/useUserContext'
+import { api } from 'src/services/api'
+import { getStripeJs } from 'src/services/stripe-js'
 
 import ArrowRightCalendarSvg from '../../../public/icons/arrow-right-calendar.svg'
 import CalendarSvg from '../../../public/icons/calendar.svg'
 
 import * as S from './style'
-
-type OrderResponse = {
-  order: {
-    id: string
-  }
-}
 
 type Props = {
   from: Date
@@ -24,6 +22,7 @@ type Props = {
 }
 
 export function RentCheckout({ from, to, price, carId }: Props) {
+  const { userId } = useUserContext()
   const { data, loading } = useCheckOrdersPerDateAndCarIdQuery({
     variables: {
       carId,
@@ -32,7 +31,11 @@ export function RentCheckout({ from, to, price, carId }: Props) {
     },
   })
 
-  const daily = to.getDate() - from.getDate()
+  const daily = intervalToDuration({
+    start: new Date(to),
+    end: new Date(from),
+  }).days
+
   const fullPrice = price * daily
 
   const formatedFullPrice = new Intl.NumberFormat('pt-BR', {
@@ -48,8 +51,25 @@ export function RentCheckout({ from, to, price, carId }: Props) {
     locale: ptBR,
   })
 
-  function handleRentCar() {
-    console.log(fullPrice)
+  async function handleRentCar(event: FormEvent) {
+    event.preventDefault()
+
+    const stripeData = {
+      total: fullPrice,
+      carId,
+      userId,
+    }
+
+    try {
+      const responseStripe = await api.post('/stripe-checkout', stripeData)
+      const { sessionId } = responseStripe.data
+
+      const stripe = await getStripeJs()
+
+      const response = await stripe.redirectToCheckout({ sessionId })
+    } catch (err) {
+      alert(err.message)
+    }
   }
 
   return (
@@ -87,7 +107,7 @@ export function RentCheckout({ from, to, price, carId }: Props) {
 
       <Button
         type="submit"
-        disabled={data.orderItems.length > 0 || loading === true}
+        disabled={data?.orderItems.length > 0 || loading === true}
       >
         {loading ? <Spinner /> : 'Alugar agora'}
       </Button>
