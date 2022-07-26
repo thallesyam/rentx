@@ -50,7 +50,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 
     let customerId = user.client.customerId ?? ''
 
-    if (user.client.customerId === null) {
+    if (user.client.customerId === null || user.client.customerId === '') {
       const stripeCustomer = await stripe.customers.create({
         email: user.client.email,
       })
@@ -67,7 +67,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     }
 
     if (!data.car) {
-      response.status(400).end('Car is not exists')
+      response.status(401).end('Car is not exists')
     }
 
     const params: Stripe.Checkout.SessionCreateParams = {

@@ -102,7 +102,7 @@ export const Container = styled.form`
     }
 
     @media (max-width: 768px) {
-      margin-bottom: 1rem;
+      margin-bottom: 6rem;
     }
   }
 `

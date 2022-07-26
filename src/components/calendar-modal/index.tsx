@@ -35,8 +35,6 @@ export function CalendarModal({
     locale: ptBR,
   })
 
-  console.log(toFormated)
-
   function handleSelectedDate() {
     toggle()
     handleChangeTab('time')
