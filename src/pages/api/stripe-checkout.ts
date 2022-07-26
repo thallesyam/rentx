@@ -32,7 +32,7 @@ const UPDATE_USER = gql`
 
 export default async (request: NextApiRequest, response: NextApiResponse) => {
   if (request.method === 'POST') {
-    const { total, carId, userId } = request.body
+    const { total, carId, userId, from, to } = request.body
 
     const { data } = await client.query({
       query: CAR_BY_ID,
@@ -70,18 +70,26 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
       response.status(400).end('Car is not exists')
     }
 
-    // Criar customer id
-
     const params: Stripe.Checkout.SessionCreateParams = {
       customer: customerId,
       payment_method_types: ['card'],
       mode: 'payment',
       line_items: [
         {
-          name: data.car.name,
-          amount: formatAmountForStripe(total, 'brl'),
-          currency: 'brl',
           quantity: 1,
+
+          price_data: {
+            unit_amount: formatAmountForStripe(total, 'brl'),
+            currency: 'brl',
+            product_data: {
+              name: data.car.name,
+              metadata: {
+                carId,
+                from,
+                to,
+              },
+            },
+          },
         },
       ],
       success_url: `${request.headers.origin}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -92,7 +100,6 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 
     response.json({ sessionId: checkoutId.id })
   } else {
-    response.setHeader('Allow', 'POST')
     response.status(405).end('Method not allowed')
   }
 }

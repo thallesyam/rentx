@@ -58,15 +58,19 @@ export function RentCheckout({ from, to, price, carId }: Props) {
       total: fullPrice,
       carId,
       userId,
+      from,
+      to,
     }
 
     try {
       const responseStripe = await api.post('/stripe-checkout', stripeData)
       const { sessionId } = responseStripe.data
 
+      console.log(sessionId)
+
       const stripe = await getStripeJs()
 
-      const response = await stripe.redirectToCheckout({ sessionId })
+      await stripe.redirectToCheckout({ sessionId })
     } catch (err) {
       alert(err.message)
     }
