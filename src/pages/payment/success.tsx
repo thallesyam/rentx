@@ -1,8 +1,8 @@
 import { ReactElement } from 'react'
 import { useRouter } from 'next/router'
 
-import { Button } from '@components/button'
-import { Layout } from '@components/layout'
+import { Button } from '@components/Button'
+import { Layout } from '@components/Layout'
 
 import RentxIconSvg from '../../../public/icons/rentx-icon-large.svg'
 import CheckSvg from '../../../public/icons/check.svg'

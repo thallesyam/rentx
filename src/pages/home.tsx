@@ -4,10 +4,10 @@ import { gql } from '@apollo/client'
 
 import { client } from 'src/services/apollo'
 
-import { Layout } from '@components/layout'
+import { Layout } from '@components/Layout'
 
 import * as S from '@styles/pages/Home'
-import { CardCar } from '@components/card-car'
+import { CardCar } from '@components/Card-car'
 
 export const CARS_QUERY = gql`
   query Cars {

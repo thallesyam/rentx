@@ -5,8 +5,8 @@ import { gql } from '@apollo/client'
 import { client } from 'src/services/apollo'
 import { CARS_QUERY } from './home'
 
-import { Layout } from '@components/layout'
-import { CarDetailSection } from '@components/car-details-section'
+import { Layout } from '@components/Layout'
+import { CarDetailSection } from '@components/Car-details-section'
 
 import CarSpeedometer from '../../public/icons/car-speedometer.svg'
 import CarSpeedsecond from '../../public/icons/car-speedsecond.svg'
