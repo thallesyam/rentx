@@ -33,7 +33,7 @@ type Props = {
 
 export function ProfileInfo({ user, image }: Props) {
   const [updateClient] = useUpdateClientMutation()
-  const [error, setIsError] = useState<string | undefined>()
+  const [error] = useState<string | undefined>()
   const { userId } = useUserContext()
   const { isOpen, toggle } = useModal()
 

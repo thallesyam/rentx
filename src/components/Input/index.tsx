@@ -15,12 +15,11 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   isIcon?: boolean
   isPassword?: boolean
   Icon?: any
-  label?: string
   error?: FieldError
 }
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
-  { name, isIcon, isPassword, Icon, type, label, error = null, ...rest },
+  { name, isIcon, isPassword, Icon, type, error = null, ...rest },
   ref
 ) => {
   const [passwordInputType, setPasswordInputType] = useState(true)
