@@ -16,6 +16,12 @@ export const CarCard = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  img {
+    width: 288px;
+    height: 100%;
+    object-fit: cover;
+  }
+
   > div {
     display: flex;
     flex-direction: column;
@@ -30,7 +36,7 @@ export const CarCard = styled.div`
       }
 
       p {
-        font-size: 1.5rem;
+        font-size: 1.125rem;
         font-family: 'Archivo';
         font-weight: 500;
       }

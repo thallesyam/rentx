@@ -1,18 +1,27 @@
+import { OrderItemResponseQuery } from 'src/pages/profile'
+
 import { ScheduleCard } from '@components/schedule-card'
 
 import * as S from './style'
 
-export function ProfileSchedules() {
+type Props = {
+  orders: OrderItemResponseQuery[]
+}
+
+export function ProfileSchedules({ orders }: Props) {
   return (
     <S.Container>
       <h1>Agendamentos feitos</h1>
 
       <section>
-        <ScheduleCard />
-        <ScheduleCard />
-        <ScheduleCard />
-        <ScheduleCard />
-        <ScheduleCard />
+        {orders.map((order) => (
+          <ScheduleCard
+            key={order.car.id}
+            car={order.car}
+            dateFrom={order.dateFrom}
+            dateTo={order.dateTo}
+          />
+        ))}
       </section>
     </S.Container>
   )

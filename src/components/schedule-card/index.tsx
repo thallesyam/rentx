@@ -2,44 +2,80 @@ import CarAlcoholSvg from '../../../public/icons/car-alcohol.svg'
 import CarEletricSvg from '../../../public/icons/car-eletric.svg'
 import CarGasolineSvg from '../../../public/icons/car-gasoline.svg'
 import ArrowRightSvg from '../../../public/icons/arrow-right.svg'
-import AudiMockupImage from '../../../public/images/audi-mockup.png'
+import ptBR from 'date-fns/locale/pt-BR'
 
 import * as S from './style'
+import { format, fromUnixTime } from 'date-fns'
 
 type Props = {
-  title: string
+  dateTo: number
+  dateFrom: number
+  car: {
+    id: string
+    company: string
+    price: number
+    name: string
+    supply: string
+    images: {
+      url: string
+    }
+  }
 }
 
-export function ScheduleCard() {
+const svgSuplly = {
+  gasolina: CarGasolineSvg,
+  eletric: CarEletricSvg,
+  alcohol: CarAlcoholSvg,
+}
+
+export function ScheduleCard({ car, dateFrom, dateTo }: Props) {
+  const Supply = svgSuplly['gasolina']
+
+  const fromFormated = format(
+    fromUnixTime(dateFrom) ?? new Date(),
+    "dd MMMM yyyy'",
+    {
+      locale: ptBR,
+    }
+  )
+
+  const toFormated = format(
+    fromUnixTime(dateTo) ?? new Date(),
+    "dd MMMM yyyy'",
+    {
+      locale: ptBR,
+    }
+  )
+
   return (
     <S.Container>
       <S.CarCard>
         <div>
           <div>
-            <span>Audi</span>
-            <p>RS 5 Coupé</p>
+            <span>{car.company}</span>
+            <p>{car.name}</p>
           </div>
 
           <div>
             <div>
               <span>Ao dia</span>
-              <p>R$ 340</p>
+              <p>R$ {car.price}</p>
             </div>
 
-            <CarEletricSvg />
+            <Supply />
           </div>
         </div>
 
-        <img src={AudiMockupImage} alt="Car" />
+        <img src={car.images[0].url} alt="Car" />
       </S.CarCard>
 
       <S.RentPeriod>
         <p>Período DO ALUGUEL</p>
 
         <div>
-          <span>18 Jul 2021</span>
+          <span>{fromFormated}</span>
           <ArrowRightSvg />
-          <span>20 Jul 2021</span>
+          <span>{toFormated}</span>
         </div>
       </S.RentPeriod>
     </S.Container>

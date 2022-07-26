@@ -31,6 +31,27 @@ const USER_QUERY = gql`
   }
 `
 
+const ORDERS_BY_USER = gql`
+  query OrdersByUser($email: String!) {
+    orders(where: { email: $email }) {
+      orderItems {
+        dateFrom
+        dateTo
+        car {
+          id
+          name
+          company
+          price
+          supply
+          images {
+            url
+          }
+        }
+      }
+    }
+  }
+`
+
 export type UserResponseQuery = {
   email: string
   name: string
@@ -39,10 +60,26 @@ export type UserResponseQuery = {
   password: string
 }
 
+export type OrderItemResponseQuery = {
+  dateTo: number
+  dateFrom: number
+  car: {
+    id: string
+    company: string
+    price: number
+    name: string
+    supply: string
+    images: {
+      url: string
+    }
+  }
+}
+
 type Props = {
   user: UserResponseQuery
+  orders: OrderItemResponseQuery[]
 }
-export default function Profile({ user }: Props) {
+export default function Profile({ user, orders }: Props) {
   const [image, setImage] = useState<File>({} as File)
   const [previewImage, setPreviewImage] = useState('')
   const [selectedTab, setSelectedTab] = useState('info')
@@ -81,7 +118,7 @@ export default function Profile({ user }: Props) {
         )}
       </S.UserContainer>
 
-      <ProfileSchedules />
+      <ProfileSchedules orders={orders} />
     </S.Container>
   )
 }
@@ -95,9 +132,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   })
 
+  const { data: orders } = await client.query({
+    query: ORDERS_BY_USER,
+    variables: {
+      email: data.client.email,
+    },
+  })
+
   return {
     props: {
       user: data.client ?? {},
+      orders: orders.orders[0].orderItems,
     },
   }
 }

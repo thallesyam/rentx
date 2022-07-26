@@ -12,7 +12,7 @@ import * as S from './style'
 
 const icons = [
   { id: 1, name: 'Home', link: '/home', Icon: HomeSvg },
-  { id: 3, name: 'Filter', link: '/filter', Icon: FilterSvg },
+  // { id: 3, name: 'Filter', link: '/filter', Icon: FilterSvg },
   { id: 2, name: 'Profile', link: '/profile', Icon: ProfileSvg },
 ]
 
