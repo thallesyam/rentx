@@ -1,5 +1,6 @@
-import { Button } from '../Button'
 import { ButtonHTMLAttributes } from 'react'
+
+import { Button } from '@components/Button'
 
 import * as S from './style'
 
