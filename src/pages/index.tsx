@@ -1,10 +1,10 @@
 import { ReactElement, useCallback } from 'react'
 import { useRouter } from 'next/router'
 
-import { Layout } from '@components/Layout'
-import { Logo } from '@components/Logo'
-import { FrameCar } from '@components/FrameCar'
-import { Button } from '@components/Button'
+import { Layout } from 'src/componentss/Layout'
+import { Logo } from 'src/componentss/Logo'
+import { FrameCar } from 'src/componentss/FrameCar'
+import { Button } from 'src/componentss/Button'
 
 import BgHome from '../../public/images/bg-home.png'
 import FrameHome from '../../public/images/frame-home.png'

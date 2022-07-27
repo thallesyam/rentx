@@ -21,7 +21,7 @@
     "rootDir": ".",
     "paths": {
       "@components/*": [
-        "./src/components/*"
+        "src/componentss/*"
       ],
       "@styles/*": [
         "./src/styles/*"

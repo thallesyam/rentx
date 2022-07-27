@@ -6,12 +6,12 @@ import { client } from 'src/services/apollo'
 import { getUserIdSSR } from 'src/utils/getUserIdSSR'
 import { isNotLoggedRedirect } from 'src/utils/login-redirects'
 
-import { Layout } from '@components/Layout'
-import { UserImageCard } from '@components/UserImageCard'
-import { Tabs } from '@components/Tabs'
-import { ProfileInfo } from '@components/ProfileInfo'
-import { PasswordChange } from '@components/PasswordChange'
-import { ProfileSchedules } from '@components/ProfileSchedules'
+import { Layout } from 'src/componentss/Layout'
+import { UserImageCard } from 'src/componentss/UserImageCard'
+import { Tabs } from 'src/componentss/Tabs'
+import { ProfileInfo } from 'src/componentss/ProfileInfo'
+import { PasswordChange } from 'src/componentss/PasswordChange'
+import { ProfileSchedules } from 'src/componentss/ProfileSchedules'
 
 import * as S from '@styles/pages/Profile'
 
