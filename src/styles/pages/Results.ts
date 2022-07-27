@@ -17,6 +17,10 @@ export const Container = styled.section`
     @media (max-width: 768px) {
       padding-left: 1rem;
       padding-right: 1rem;
+
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
     }
 
     > .from_to_container {

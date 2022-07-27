@@ -88,7 +88,10 @@ export default function Results({ cars, from, to }: Props) {
   return (
     <S.Container>
       <div>
-        <h1>Carros disponíveis</h1>
+        <h1>
+          {cars?.length}{' '}
+          {cars.length > 1 ? 'carros encontrados' : 'carro encontrado'}{' '}
+        </h1>
         <section className="from_to_container">
           <div>
             <div>
