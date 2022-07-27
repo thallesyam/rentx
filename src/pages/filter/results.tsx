@@ -1,20 +1,21 @@
-import { ReactElement } from 'react'
+import { ReactElement, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import { gql } from '@apollo/client'
 import { format, fromUnixTime } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import { useRouter } from 'next/router'
 
 import { client } from 'src/services/apollo'
 
 import { Layout } from '@components/Layout'
 import { CardCar } from '@components/CardCar'
+import { FilterBar } from '@components/FilterBar'
+import { Button } from '@components/Button'
 
 import ArrowRightCalendarSvg from '../../../public/icons/arrow-right-calendar.svg'
 import CalendarSvg from '../../../public/icons/calendar.svg'
 
 import * as S from '@styles/pages/Results'
-import { Button } from '@components/Button'
-import { useRouter } from 'next/router'
 
 const ORDERS_PER_DATE_QUERY = gql`
   query checkOrdersPerDate($dateFrom: Int!, $dateTo: Int!) {
@@ -44,6 +45,7 @@ const AVAILABLE_CAR_PER_DATE_QUERY = gql`
       }
       company
       supply
+      manual
     }
   }
 `
@@ -58,6 +60,7 @@ export type Car = {
   id: string
   company: string
   supply: string
+  manual: boolean
 }
 
 type Props = {
@@ -68,6 +71,10 @@ type Props = {
 
 export default function Results({ cars, from, to }: Props) {
   const router = useRouter()
+  const [isFilterBarOpen, setIsFilterBarOpen] = useState(false)
+  const [filteredCars, setFilteredCars] = useState<Car[]>(cars)
+
+  const results = filteredCars ?? cars
 
   const fromFormated = format(
     fromUnixTime(from) ?? new Date(),
@@ -85,12 +92,16 @@ export default function Results({ cars, from, to }: Props) {
     router.push('/filter')
   }
 
+  function handleOpenFilter() {
+    setIsFilterBarOpen(true)
+  }
+
   return (
     <S.Container>
       <div>
         <h1>
-          {cars?.length}{' '}
-          {cars.length > 1 ? 'carros encontrados' : 'carro encontrado'}{' '}
+          {results?.length}{' '}
+          {results.length > 1 ? 'carros encontrados' : 'carro encontrado'}{' '}
         </h1>
         <section className="from_to_container">
           <div>
@@ -107,17 +118,30 @@ export default function Results({ cars, from, to }: Props) {
             </div>
           </div>
 
-          <Button onClick={handleClickReset}>
-            <CalendarSvg />
-          </Button>
+          <div>
+            <Button onClick={handleClickReset}>
+              <CalendarSvg />
+            </Button>
+
+            <Button onClick={handleOpenFilter}>
+              <CalendarSvg />
+            </Button>
+          </div>
         </section>
       </div>
 
       <section>
-        {cars.map((car) => (
+        {results.map((car) => (
           <CardCar key={car.id} car={car} isFilter />
         ))}
       </section>
+
+      <FilterBar
+        isFilterBarOpen={isFilterBarOpen}
+        setIsFilterBarOpen={setIsFilterBarOpen}
+        setFilteredCars={setFilteredCars}
+        cars={cars}
+      />
     </S.Container>
   )
 }

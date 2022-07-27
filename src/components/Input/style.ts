@@ -1,13 +1,17 @@
 import styled from 'styled-components'
 
-export const Container = styled.section`
+type Props = {
+  isIcon: boolean
+}
+
+export const Container = styled.section<Props>`
   width: 100%;
   height: 64px;
 
   border: 1px solid var(--gray-200);
 
   display: grid;
-  grid-template-columns: 71px 1fr;
+  grid-template-columns: ${(props) => (props.isIcon ? '71px 1fr' : '1fr')};
 
   > div {
     position: relative;

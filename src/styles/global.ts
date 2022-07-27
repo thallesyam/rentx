@@ -22,7 +22,8 @@ export default createGlobalStyle`
     background: var(--gray-100);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
-    height: 100vh
+    height: 100vh;
+
   }
 
   ol, ul {

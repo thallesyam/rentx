@@ -32,7 +32,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
 
   return (
     <>
-      <S.Container>
+      <S.Container isIcon={isIcon}>
         {isIcon && (
           <S.LabelIcon htmlFor={name} error={!!error}>
             {<Icon />}

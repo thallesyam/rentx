@@ -25,12 +25,30 @@ export const Container = styled.section`
 
     > .from_to_container {
       display: grid;
-      grid-template-columns: 1fr 48px;
+      grid-template-columns: 1fr 151px;
 
       position: relative;
 
       svg {
+      }
+
+      button {
+        background-color: transparent;
+      }
+
+      button:first-child {
+        position: relative;
+
         margin-left: 1rem;
+        &:before {
+          content: '';
+          width: 1px;
+          height: 24px;
+          background-color: var(--gray-300);
+          position: absolute;
+          right: -12px;
+          top: 12px;
+        }
       }
 
       > div {
