@@ -2,9 +2,9 @@ import { Dispatch, SetStateAction } from 'react'
 import { format } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
-import { Modal } from 'src/componentss/Modal'
-import { Button } from 'src/componentss/Button'
-import { Calendar } from 'src/componentss/Calendar'
+import { Modal } from '@components/Modal'
+import { Button } from '@components/Button'
+import { Calendar } from '@components/Calendar'
 
 import CloseSvg from '../../../public/icons/close.svg'
 

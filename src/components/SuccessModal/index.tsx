@@ -1,5 +1,5 @@
-import { Modal } from 'src/componentss/Modal'
-import { Button } from 'src/componentss/Button'
+import { Modal } from '@components/Modal'
+import { Button } from '@components/Button'
 
 import SymbolModalSvg from '../../../public/icons/symbol-modal.svg'
 import SuccessModalSvg from '../../../public/icons/success-modal.svg'

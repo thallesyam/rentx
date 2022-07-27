@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { ReactNode } from 'react'
-import { Header } from 'src/componentss/Header'
-import { Sidebar } from 'src/componentss/Sidebar'
+import { Header } from '@components/Header'
+import { Sidebar } from '@components/Sidebar'
 
 import * as S from './style'
 

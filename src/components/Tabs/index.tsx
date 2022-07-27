@@ -1,4 +1,4 @@
-import { Button } from 'src/componentss/Button'
+import { Button } from '@components/Button'
 import * as S from './style'
 
 type Props = {

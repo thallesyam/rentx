@@ -2,11 +2,11 @@ import { useState } from 'react'
 
 import { useModal } from 'src/hooks/useModal'
 
-import { Button } from 'src/componentss/Button'
-import { CarDetailsCard } from 'src/componentss/CarDetailsCard'
-import { Tabs } from 'src/componentss/Tabs'
-import { CalendarModal } from 'src/componentss/CalendarModal'
-import { RentCheckout } from 'src/componentss/RentCheckout'
+import { Button } from '@components/Button'
+import { CarDetailsCard } from '@components/CarDetailsCard'
+import { Tabs } from '@components/Tabs'
+import { CalendarModal } from '@components/CalendarModal'
+import { RentCheckout } from '@components/RentCheckout'
 
 import * as S from './style'
 

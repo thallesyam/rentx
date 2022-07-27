@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import Link from 'next/link'
 
-import { Logo } from 'src/componentss/Logo'
+import { Logo } from '@components/Logo'
 
 import HomeSvg from '../../../public/icons/home.svg'
 import ProfileSvg from '../../../public/icons/profile.svg'

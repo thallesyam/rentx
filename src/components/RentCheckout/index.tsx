@@ -1,5 +1,5 @@
-import { Button } from 'src/componentss/Button'
-import { Spinner } from 'src/componentss/Spinner'
+import { Button } from '@components/Button'
+import { Spinner } from '@components/Spinner'
 import { format, getUnixTime, intervalToDuration } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { FormEvent } from 'react'

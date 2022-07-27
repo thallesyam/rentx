@@ -10,9 +10,9 @@ import { useUpdateClientMutation } from 'src/generated/graphql'
 import { useUserContext } from 'src/hooks/useUserContext'
 import { useModal } from 'src/hooks/useModal'
 
-import { Input } from 'src/componentss/Input'
-import { Button } from 'src/componentss/Button'
-import { SuccessModal } from 'src/componentss/SuccessModal'
+import { Input } from '@components/Input'
+import { Button } from '@components/Button'
+import { SuccessModal } from '@components/SuccessModal'
 
 import EmailInputSvg from '../../../public/icons/email-input.svg'
 import UserInputSvg from '../../../public/icons/user-input.svg'

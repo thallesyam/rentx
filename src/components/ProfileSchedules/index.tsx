@@ -1,6 +1,6 @@
 import { OrderItemResponseQuery } from 'src/pages/profile'
 
-import { ScheduleCard } from 'src/componentss/ScheduleCard'
+import { ScheduleCard } from '@components/ScheduleCard'
 
 import * as S from './style'
 

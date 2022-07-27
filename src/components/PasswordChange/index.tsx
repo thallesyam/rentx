@@ -2,8 +2,8 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-import { Button } from 'src/componentss/Button'
-import { Input } from 'src/componentss/Input'
+import { Button } from '@components/Button'
+import { Input } from '@components/Input'
 
 import PasswordInputSvg from '../../../public/icons/password-input.svg'
 
@@ -12,7 +12,7 @@ import { useState } from 'react'
 import { useUpdatePasswordMutation } from 'src/generated/graphql'
 import { useModal } from 'src/hooks/useModal'
 import { useUserContext } from 'src/hooks/useUserContext'
-import { SuccessModal } from 'src/componentss/SuccessModal'
+import { SuccessModal } from '@components/SuccessModal'
 
 import * as S from './style'
 
