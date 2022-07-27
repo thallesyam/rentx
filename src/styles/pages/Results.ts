@@ -19,6 +19,43 @@ export const Container = styled.section`
       padding-right: 1rem;
     }
 
+    > .from_to_container {
+      display: grid;
+      grid-template-columns: 1fr 48px;
+
+      position: relative;
+
+      svg {
+        margin-left: 1rem;
+      }
+
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+
+        > div {
+          display: flex;
+          flex-direction: column;
+
+          > p {
+            font-family: Archivo;
+            font-weight: 500;
+            font-size: 0.75rem;
+            color: var(--gray-700);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+          }
+
+          > span {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--gray-900);
+          }
+        }
+      }
+    }
+
     h1 {
       font-family: 'Archivo';
       font-weight: 600;

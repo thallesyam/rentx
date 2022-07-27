@@ -1,13 +1,20 @@
 import { ReactElement } from 'react'
 import { GetServerSideProps } from 'next'
 import { gql } from '@apollo/client'
+import { format, fromUnixTime } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
 import { client } from 'src/services/apollo'
 
 import { Layout } from '@components/Layout'
 import { CardCar } from '@components/CardCar'
 
+import ArrowRightCalendarSvg from '../../../public/icons/arrow-right-calendar.svg'
+import CalendarSvg from '../../../public/icons/calendar.svg'
+
 import * as S from '@styles/pages/Results'
+import { Button } from '@components/Button'
+import { useRouter } from 'next/router'
 
 const ORDERS_PER_DATE_QUERY = gql`
   query checkOrdersPerDate($dateFrom: Int!, $dateTo: Int!) {
@@ -55,16 +62,52 @@ export type Car = {
 
 type Props = {
   cars: Car[]
+  from: number
+  to: number
 }
 
-export default function Results({ cars }: Props) {
+export default function Results({ cars, from, to }: Props) {
+  const router = useRouter()
+
+  const fromFormated = format(
+    fromUnixTime(from) ?? new Date(),
+    "dd MMMM yyyy'",
+    {
+      locale: ptBR,
+    }
+  )
+
+  const toFormated = format(fromUnixTime(to) ?? new Date(), "dd MMMM yyyy'", {
+    locale: ptBR,
+  })
+
+  function handleClickReset() {
+    router.push('/filter')
+  }
+
   return (
     <S.Container>
       <div>
         <h1>Carros disponíveis</h1>
-        <p>
-          Total {cars.length} {cars.length > 1 ? 'carros' : 'carro'}
-        </p>
+        <section className="from_to_container">
+          <div>
+            <div>
+              <p>DE</p>
+              <span>{fromFormated}</span>
+            </div>
+
+            <ArrowRightCalendarSvg />
+
+            <div>
+              <p>ATÉ</p>
+              <span>{toFormated}</span>
+            </div>
+          </div>
+
+          <Button onClick={handleClickReset}>
+            <CalendarSvg />
+          </Button>
+        </section>
       </div>
 
       <section>
@@ -105,6 +148,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       cars: idsAvailable.cars ?? [],
+      from: Number(from),
+      to: Number(to),
     },
   }
 }
