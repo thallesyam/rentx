@@ -8,7 +8,6 @@ import { setCookie } from 'nookies'
 
 import { isLoggedRedirect } from 'src/utils/login-redirects'
 import { useLoginLazyQuery } from 'src/generated/graphql'
-import { useUserContext } from 'src/hooks/useUserContext'
 
 import { FrameCar } from '@components/FrameCar'
 import { Layout } from '@components/Layout'
@@ -37,7 +36,6 @@ export default function Login() {
   const router = useRouter()
   const [clients] = useLoginLazyQuery()
   const [error, setError] = useState<string | undefined>(undefined)
-  const { setIsLogged } = useUserContext()
 
   const {
     register,
@@ -75,7 +73,6 @@ export default function Login() {
       maxAge: 30 * 24 * 60 * 60,
       path: '/',
     })
-    setIsLogged(id)
 
     router.push('/profile')
   }

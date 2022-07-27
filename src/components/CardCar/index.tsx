@@ -9,6 +9,7 @@ import * as S from './style'
 
 type Props = {
   car: Car
+  isFilter?: boolean
 }
 
 const svgSuplly = {
@@ -17,11 +18,11 @@ const svgSuplly = {
   alcohol: CarAlcoholSvg,
 }
 
-export function CardCar({ car }: Props) {
+export function CardCar({ car, isFilter = false }: Props) {
   const Supply = svgSuplly[car.supply] ?? ''
 
   return (
-    <Link href={car.slug} passHref>
+    <Link href={isFilter ? car.slug : `/${car.slug}`} passHref>
       <S.Container>
         <img src={car.images[0].url} alt={car.name} />
 

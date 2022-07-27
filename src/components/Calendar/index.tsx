@@ -9,7 +9,12 @@ type Props = {
 export function Calendar({ date, setDate }: Props) {
   return (
     <div className="calendar-container">
-      <ReactCalendar onChange={setDate} value={date} selectRange={true} />
+      <ReactCalendar
+        onChange={setDate}
+        value={date}
+        selectRange={true}
+        locale={'pt-br'}
+      />
     </div>
   )
 }

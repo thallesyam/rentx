@@ -26,7 +26,7 @@ export function UserProvider({ children }: Props) {
       value={{
         isLogged: !!isLogged,
         userId: isLogged,
-        setIsLogged
+        setIsLogged,
       }}
     >
       {children}

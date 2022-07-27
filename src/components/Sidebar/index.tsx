@@ -6,12 +6,13 @@ import { Logo } from '@components/Logo'
 
 import HomeSvg from '../../../public/icons/home.svg'
 import ProfileSvg from '../../../public/icons/profile.svg'
+import FilterSvg from '../../../public/icons/filter.svg'
 
 import * as S from './style'
 
 const icons = [
   { id: 1, name: 'Home', link: '/home', Icon: HomeSvg },
-  // { id: 3, name: 'Filter', link: '/filter', Icon: FilterSvg },
+  { id: 3, name: 'Filter', link: '/filter', Icon: FilterSvg },
   { id: 2, name: 'Profile', link: '/profile', Icon: ProfileSvg },
 ]
 
