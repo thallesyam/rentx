@@ -14,9 +14,10 @@ type Props = {
 
 export function Header({ title = '' }: Props) {
   const router = useRouter()
-  const { isLogged } = useUserContext()
+  const { isLogged, setIsLogged } = useUserContext()
 
   const handleLogout = useCallback(() => {
+    setIsLogged('')
     destroyCookie(null, '@rentx:userId')
     router.push('/home')
   }, [])

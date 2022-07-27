@@ -2,6 +2,7 @@ import { Button } from '@components/Button'
 import { Spinner } from '@components/Spinner'
 import { format, getUnixTime, intervalToDuration } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import { useRouter } from 'next/router'
 import { FormEvent } from 'react'
 
 import { useCheckOrdersPerDateAndCarIdQuery } from 'src/generated/graphql'
@@ -22,6 +23,7 @@ type Props = {
 }
 
 export function RentCheckout({ from, to, price, carId }: Props) {
+  const router = useRouter()
   const { userId } = useUserContext()
   const { data, loading } = useCheckOrdersPerDateAndCarIdQuery({
     variables: {
@@ -54,6 +56,13 @@ export function RentCheckout({ from, to, price, carId }: Props) {
   async function handleRentCar(event: FormEvent) {
     event.preventDefault()
 
+    console.log(userId)
+
+    if (!userId) {
+      router.push('/profile/login')
+      return
+    }
+
     const stripeData = {
       total: fullPrice,
       carId,
@@ -65,8 +74,6 @@ export function RentCheckout({ from, to, price, carId }: Props) {
     try {
       const responseStripe = await api.post('/stripe-checkout', stripeData)
       const { sessionId } = responseStripe.data
-
-      console.log(sessionId)
 
       const stripe = await getStripeJs()
 

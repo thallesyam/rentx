@@ -8,13 +8,13 @@ import { setCookie } from 'nookies'
 
 import { isLoggedRedirect } from 'src/utils/login-redirects'
 import { useLoginLazyQuery } from 'src/generated/graphql'
+import { useUserContext } from 'src/hooks/useUserContext'
 
 import { FrameCar } from '@components/FrameCar'
 import { Layout } from '@components/Layout'
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
 import { FormControl } from '@components/FormControl'
-import { ButtonLink } from '@components/ButtonLink'
 
 import BgLogin from '../../../public/images/bg-home.png'
 import FrameLogin from '../../../public/images/frame-login.png'
@@ -37,6 +37,7 @@ export default function Login() {
   const router = useRouter()
   const [clients] = useLoginLazyQuery()
   const [error, setError] = useState<string | undefined>(undefined)
+  const { setIsLogged } = useUserContext()
 
   const {
     register,
@@ -74,6 +75,7 @@ export default function Login() {
       maxAge: 30 * 24 * 60 * 60,
       path: '/',
     })
+    setIsLogged(id)
 
     router.push('/profile')
   }
@@ -107,7 +109,6 @@ export default function Login() {
               {...register('password')}
             />
           </FormControl>
-          <ButtonLink text="Esqueci minha senha" />
           <Button type="submit" className="login_button" disabled={!isValid}>
             Login
           </Button>
